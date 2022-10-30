@@ -1,7 +1,16 @@
-import "./App.css";
+import React from "react";
+import SearchFormSection from "./components/SearchFormSection.js";
+import PopularMovies from "./components/PopularMovies.js";
+import Navbar from "./components/Navbar.js";
 
 function App() {
-  return <div className="App">this is the app</div>;
+  return (
+    <>
+      <Navbar />
+      <SearchFormSection />
+      <PopularMovies />
+    </>
+  );
 }
 
 export default App;

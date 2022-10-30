@@ -36,6 +36,8 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/reviews/:id" element={<DetailsPage />} />
+            <Route path="/tv/:id" element={<DetailsPage />} />
+            <Route path="/movie/:id" element={<DetailsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

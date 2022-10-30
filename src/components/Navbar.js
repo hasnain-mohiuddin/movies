@@ -1,17 +1,12 @@
 import React, { useContext } from "react";
-import {
-  AppBar,
-  Toolbar,
-  CssBaseline,
-  Typography,
-  makeStyles,
-} from "@material-ui/core";
+import { AppBar, Toolbar, CssBaseline, makeStyles } from "@material-ui/core";
 
 import UserContext from "../context/userContext";
 import { APP_TITLE } from "../utils/constants";
-import { TEAL_HEXA, NAVY_BLUE_HEXA } from "../utils/colors";
-import { auth } from "../firebase";
+import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import { auth } from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
@@ -21,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     flexGrow: "1",
     cursor: "pointer",
+    fontFamily: "Raleway, Arial",
+    color: LIGHT_GREY_HEXA,
+    textDecoration: "none",
+    fontSize: "2.5rem",
   },
   link: {
     textDecoration: "none",
@@ -28,56 +27,50 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     marginLeft: theme.spacing(20),
     "&:hover": {
-      color: "yellow",
-      borderBottom: "1px solid white",
+      color: LIGHT_GREY_HEXA,
     },
   },
   navbar: {
-    display: 'flex', 
+    display: "flex",
     justifyContent: "space-between",
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 function Navbar() {
   const classes = useStyles();
   const [user] = useContext(UserContext);
 
-  const handleSignout = () => {
-    auth.signOut();
-  };
-
   return (
-    <AppBar position="static" sx={{ backgroundColor: NAVY_BLUE_HEXA}}>
+    <AppBar position="static" sx={{ backgroundColor: NAVY_BLUE_HEXA }}>
       <CssBaseline />
       <Toolbar className={classes.navbar}>
-        <Typography
-          variant="h4"
-          fontFamily="Raleway, Arial"
-          sx={{
-            color: TEAL_HEXA,
-            mb: "0px",
-          }}
-        >
+        <Link to={"/"} className={classes.logo}>
           {APP_TITLE}
-        </Typography>
-          <div className={classes.navlinks}>
-            {!user && (
-              <Link to={"/signup"} className={classes.link}>
-                Sign Up
-              </Link>
-            )}
-            {!user && (
-              <Link to={"/signin"} className={classes.link}>
-                Sign In
-              </Link>
-            )}
-            {user && (
-              <Link onClick={handleSignout} className={classes.link}>
-                Sign Out
-              </Link>
-            )}
-          </div>
+        </Link>
+        <div className={classes.navlinks}>
+          {!user && (
+            <Link to={"/signup"} className={classes.link}>
+              Sign Up
+            </Link>
+          )}
+          {!user && (
+            <Link to={"/signin"} className={classes.link}>
+              Sign In
+            </Link>
+          )}
+          {user && (
+            <Button
+              className={classes.link}
+              sx={{ color: "white" }}
+              onClick={() => {
+                auth.signOut();
+              }}
+            >
+              Sign Out
+            </Button>
+          )}
+        </div>
       </Toolbar>
     </AppBar>
   );

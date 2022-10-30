@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { InputLabel, FormControl } from "@mui/material";
-import axios from "axios";
-import MovieGenresDropdown  from "./MovieGenresDropdown";
-import {GENERES_DROP_DOWN_LABEL} from "../utils/constants"
-import {ORANGE_HEXA} from "../utils/colors";
+import MovieGenresDropdown from "./MovieGenresDropdown";
+import { GENERES_DROP_DOWN_LABEL } from "../utils/constants";
+import { ORANGE_HEXA } from "../utils/colors";
+import { fetchGenres } from "../services/moviesService";
 
 const MovieGenres = ({ genresType, setGenresType }) => {
   const [genresList, setGenreList] = useState([]);
 
   const getGenres = async () => {
-    const { data } = await axios.get(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=342c371f5f83eb671d3747779a0bdfc2&language=en-US"
-    );
+    const { data } = await fetchGenres();
     setGenreList(data.genres);
   };
 
@@ -44,7 +42,11 @@ const MovieGenres = ({ genresType, setGenresType }) => {
   return (
     <FormControl sx={{ width: "25%", minWidth: "200px", m: 1 }}>
       {getGenresLabel()}
-      <MovieGenresDropdown genresList={genresList} genresType={genresType} handleChange={handleChange}/> 
+      <MovieGenresDropdown
+        genresList={genresList}
+        genresType={genresType}
+        handleChange={handleChange}
+      />
     </FormControl>
   );
 };

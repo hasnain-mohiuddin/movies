@@ -1,19 +1,19 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAJ1NxM7_YZ9a6pCjtyTi7DktdLXEYF2eE",
-  authDomain: "netflix-build-f3abc.firebaseapp.com",
-  projectId: "netflix-build-f3abc",
-  storageBucket: "netflix-build-f3abc.appspot.com",
-  messagingSenderId: "1034964995573",
-  appId: "1:1034964995573:web:8d9cca0a24370ae54124bc",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
-const auth=firebase.auth();
+const auth = firebase.auth();
 
-export {auth};
+export { auth };
 export default db;

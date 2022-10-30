@@ -1,12 +1,9 @@
-import React from 'react';
-import {
-    CardContent,
-    Typography,
-  } from "@mui/material";
+import React from "react";
+import { CardContent, Typography } from "@mui/material";
 
-const CardDetails = ({movieName, releaseDate}) => {
-
-    return <CardContent>
+const CardDetails = ({ movieName, releaseDate }) => {
+  return (
+    <CardContent>
       <Typography
         gutterBottom
         variant="p"
@@ -19,5 +16,6 @@ const CardDetails = ({movieName, releaseDate}) => {
         {releaseDate}
       </Typography>
     </CardContent>
-}
+  );
+};
 export default CardDetails;

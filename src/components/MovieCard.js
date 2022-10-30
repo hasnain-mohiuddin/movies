@@ -4,26 +4,23 @@ import CardDetails from "./CardDetails";
 import CardRatings from "./CardRatings";
 import { GET_CARD_IMAGE_LINK, REVIEWS } from "../utils/constants";
 import ReviewsModal from "./ReviewsModal";
-import axios from "axios";
+import { fetchMovieReviews } from "../services/moviesService";
 
 const MovieCard = ({ movie }) => {
   const [open, setOpen] = useState(false);
   const [movieReviews, setMovieReviews] = useState([]);
-   
-    
+
   const getMovieReviews = async () => {
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/movie/${movie.id}/reviews?api_key=342c371f5f83eb671d3747779a0bdfc2&language=en-US&page=1`
-    );
+    const { data } = await fetchMovieReviews(movie.id);
     setMovieReviews(data.results);
-    setOpen(true)
+    setOpen(true);
   };
 
-  const handleModalOpen = async() => {
-    await getMovieReviews()
+  const handleModalOpen = async () => {
+    await getMovieReviews();
   };
 
-  console.log({movieReviews});
+  console.log({ movieReviews });
 
   return (
     <>
@@ -39,12 +36,12 @@ const MovieCard = ({ movie }) => {
         />
         <CardRatings averageScore={movie.vote_average} />
         <CardActions>
-          <Button size="small" onClick={()=>handleModalOpen()}>
+          <Button size="small" onClick={() => handleModalOpen()}>
             {REVIEWS}
           </Button>
         </CardActions>
       </Card>
-      <ReviewsModal modalOpen={open} setModalOpen={setOpen} movie={movie}/>
+      <ReviewsModal modalOpen={open} setModalOpen={setOpen} movie={movie} />
     </>
   );
 };

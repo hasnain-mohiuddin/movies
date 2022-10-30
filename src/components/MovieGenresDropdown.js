@@ -1,8 +1,8 @@
 import React from "react";
 import { MenuItem, Select } from "@mui/material";
-import {WIHITE_HEXA} from "../utils/colors";
+import { WIHITE_HEXA } from "../utils/colors";
 
-const MovieGenresDropdown = ({genresList, genresType, handleChange}) => {
+const MovieGenresDropdown = ({ genresList, genresType, handleChange }) => {
   return (
     <Select
       labelId="genres-select-dropdown"

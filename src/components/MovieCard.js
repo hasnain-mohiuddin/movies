@@ -1,47 +1,28 @@
-import React, { useState } from "react";
-import { Card, CardMedia, CardActions, Button } from "@mui/material";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Card, CardMedia } from "@mui/material";
+
 import CardDetails from "./CardDetails";
 import CardRatings from "./CardRatings";
-import { GET_CARD_IMAGE_LINK, REVIEWS } from "../utils/constants";
-import ReviewsModal from "./ReviewsModal";
-import { fetchMovieReviews } from "../services/moviesService";
+import { GET_CARD_IMAGE_LINK } from "../utils/constants";
 
 const MovieCard = ({ movie }) => {
-  const [open, setOpen] = useState(false);
-  const [movieReviews, setMovieReviews] = useState([]);
-
-  const getMovieReviews = async () => {
-    const { data } = await fetchMovieReviews(movie.id);
-    setMovieReviews(data.results);
-    setOpen(true);
-  };
-
-  const handleModalOpen = async () => {
-    await getMovieReviews();
-  };
-
-  console.log({ movieReviews });
+  const navigate = useNavigate()
 
   return (
     <>
-      <Card sx={{ minWidth: 200, m: 1, borderRadius: 4 }}>
+      <Card sx={{ minWidth: 250, m: 1, borderRadius: 4, cursor: 'pointer' }} onClick={() => navigate(`/reviews/${movie.id}`)}>
         <CardMedia
           component="img"
           alt="Movie Image"
           image={GET_CARD_IMAGE_LINK(movie.backdrop_path)}
         />
         <CardDetails
-          movieName={movie.title}
-          releaseDate={movie.first_air_date}
+          movieName={movie.title || movie.name}
+          releaseDate={movie.first_air_date || movie.release_date}
         />
         <CardRatings averageScore={movie.vote_average} />
-        <CardActions>
-          <Button size="small" onClick={() => handleModalOpen()}>
-            {REVIEWS}
-          </Button>
-        </CardActions>
       </Card>
-      <ReviewsModal modalOpen={open} setModalOpen={setOpen} movie={movie} />
     </>
   );
 };

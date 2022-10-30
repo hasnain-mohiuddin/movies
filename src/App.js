@@ -8,6 +8,7 @@ import Signup from "./components/Signup.js";
 import Dashboard from "./components/Dashboard.js";
 import UserContext from "./context/userContext.js";
 import RequireAuth from "./components/RequireAuth";
+import DetailsPage from "./components/DetailsPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -34,6 +35,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route element={<RequireAuth />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/reviews/:id" element={<DetailsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

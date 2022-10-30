@@ -19,3 +19,9 @@ export const fetchMovieReviews = (id) =>
   axios.get(
     `/movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US&page=1`
   );
+
+
+  export const fetchMovie = (id) => 
+  axios.get(
+    `/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+  );

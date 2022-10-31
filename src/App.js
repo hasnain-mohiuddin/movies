@@ -26,9 +26,7 @@ function App() {
     <UserContext.Provider value={user}>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          {switchRoutes()}
-        </Routes>
+        <Routes>{switchRoutes()}</Routes>
       </BrowserRouter>
     </UserContext.Provider>
   );

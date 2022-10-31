@@ -6,7 +6,10 @@ const MovieReviewCard = ({ review }) => {
   return (
     <Box sx={{ p: 4, border: "1px solid black", my: 5, borderRadius: 4 }}>
       <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
-        <UserAvatar avatar={review.author_details.avatar_path} author={review.author}/>
+        <UserAvatar
+          avatar={review.author_details.avatar_path}
+          author={review.author}
+        />
         <Box sx={{ display: "flex", flexDirection: "column", mx: 4 }}>
           <Typography variant="p" fontWeight={"bold"} fontSize={18}>
             A review by{" "}

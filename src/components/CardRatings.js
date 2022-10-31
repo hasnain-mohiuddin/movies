@@ -2,7 +2,7 @@ import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { Typography, Container, Rating } from "@mui/material";
 
-import { GET_RATING_SATRS, GET_RATING_SCORE } from "../utils/constants";
+import { GET_RATING_SATRS, GET_RATING_SCORE } from "../utils/helpers";
 
 const CardRatings = ({ averageScore }) => {
   return (

@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { Box, Container, Typography, CardMedia } from "@mui/material";
 
 import { fetchMovie, fetchTvShow } from "../services/moviesService";
-import { GET_CARD_IMAGE_LINK } from "../utils/constants";
+import { GET_CARD_IMAGE_LINK } from "../utils/helpers";
 import CardRatings from "./CardRatings";
 
 const MovieDetails = () => {
@@ -14,7 +14,7 @@ const MovieDetails = () => {
   useEffect(() => {
     if (location.pathname.includes("movie")) getMovieById();
     else getTVShowById();
-  }, []);
+  }, []); // eslint-disable-line
 
   const getMovieById = async () => {
     try {

@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 
 import { NAVY_BLUE_HEXA } from "../utils/colors";
-import { GET_CARD_IMAGE_LINK } from "../utils/constants";
+import { GET_CARD_IMAGE_LINK } from "../utils/helpers";
 
 const MovieReviewCard = ({ review }) => {
   return (

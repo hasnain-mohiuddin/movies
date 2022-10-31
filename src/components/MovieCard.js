@@ -4,7 +4,7 @@ import { Box, Card, CardMedia } from "@mui/material";
 
 import CardDetails from "./CardDetails";
 import CardRatings from "./CardRatings";
-import { GET_CARD_IMAGE_LINK } from "../utils/constants";
+import { GET_CARD_IMAGE_LINK } from "../utils/helpers";
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();

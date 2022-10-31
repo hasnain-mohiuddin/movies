@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { APP_TITLE } from "../constants/constants";
 import DrawerComponent from "./DrawerComponent";
 import UserContext from "../context/userContext";
-import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../constants/colors";
+import {  LIGHT_GREY_HEXA, NAVY_BLUE_HEXA } from "../constants/colors";
 import urls from "../constants/urls";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +53,7 @@ function Navbar() {
   const user = useContext(UserContext);
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: NAVY_BLUE_HEXA }}>
+    <AppBar position="static" style={{ background: NAVY_BLUE_HEXA }}>
       <CssBaseline />
       <Toolbar className={classes.navbar}>
         <Link to={urls.dashboard} className={classes.logo}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuItem, Select } from "@mui/material";
 
-import { WIHITE_HEXA } from "../constants/colors";
+// import { WIHITE_HEXA } from "../constants/colors";
 
 const MovieGenresDropdown = ({ genresList, genresType, handleChange }) => {
   return (
@@ -11,12 +11,12 @@ const MovieGenresDropdown = ({ genresList, genresType, handleChange }) => {
       value={genresType}
       label="Select Genres"
       onChange={handleChange}
-      sx={{
-        backgroundColor: WIHITE_HEXA,
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-      }}
+      // sx={{
+      //   backgroundColor: WIHITE_HEXA,
+      //   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      //     border: "none",
+      //   },
+      // }}
     >
       {genresList.map((item) => (
         <MenuItem key={item.id} value={item.id}>

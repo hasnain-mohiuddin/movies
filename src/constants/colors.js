@@ -4,3 +4,4 @@ export const ORANGE_HEXA = "#EAAB23";
 export const LIGHT_GREY_HEXA = "#E2E2E2";
 export const WIHITE_HEXA = "#FFFFFF";
 export const DARK_GREY_HEXA = "#424242";
+export const BLACK = '#000000'

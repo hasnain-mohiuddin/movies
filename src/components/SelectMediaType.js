@@ -67,7 +67,7 @@ function SelectMediaType({ selected, setSelected, setFilterMedia }) {
 
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel id="mutiple-select-label">Multiple Select</InputLabel>
+      <InputLabel id="mutiple-select-label">Media Type</InputLabel>
       <Select
         labelId="mutiple-select-label"
         multiple

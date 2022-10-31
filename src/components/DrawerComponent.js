@@ -33,16 +33,16 @@ function DrawerComponent({ user }) {
         <List>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-            {user && (
-              <Button
-                className={classes.link}
-                onClick={() => {
-                  auth.signOut();
-                }}
-              >
-                Sign Out
-              </Button>
-            )}
+              {user && (
+                <Button
+                  className={classes.link}
+                  onClick={() => {
+                    auth.signOut();
+                  }}
+                >
+                  Sign Out
+                </Button>
+              )}
             </ListItemText>
           </ListItem>
           <Divider />

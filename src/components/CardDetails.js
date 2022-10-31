@@ -4,7 +4,6 @@ import { CardContent, Typography } from "@mui/material";
 import { truncate } from "../utils/helpers";
 
 const CardDetails = ({ movieName, releaseDate }) => {
-
   return (
     <CardContent>
       <Typography

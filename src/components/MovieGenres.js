@@ -10,8 +10,12 @@ const MovieGenres = ({ genresType, setGenresType }) => {
   const [genresList, setGenreList] = useState([]);
 
   const getGenres = async () => {
-    const { data } = await fetchGenres();
-    setGenreList(data.genres);
+    try {
+      const { data } = await fetchGenres();
+      setGenreList(data.genres);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleChange = (event) => setGenresType(event.target.value);

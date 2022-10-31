@@ -14,9 +14,12 @@ const MovieReviews = () => {
   }, []);
 
   const getMovieReviews = async () => {
-    const { data } = await fetchMovieReviews(params.id);
-    console.log(data);
-    setReview(data.results);
+    try {
+      const { data } = await fetchMovieReviews(params.id);
+      setReview(data.results);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

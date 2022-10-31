@@ -10,8 +10,12 @@ const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   const fetchTrending = async () => {
-    const { data } = await fetchTrendingMovies();
-    setPopularMovies(data.results);
+    try {
+      const { data } = await fetchTrendingMovies();
+      setPopularMovies(data.results);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

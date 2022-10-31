@@ -17,14 +17,16 @@ const MovieDetails = () => {
   }, []);
 
   const getMovieById = async () => {
-    const { data } = await fetchMovie(params.id);
-    console.log(data);
-    setMovie(data);
+    try {
+      const { data } = await fetchMovie(params.id);
+      setMovie(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const getTVShowById = async () => {
     const { data } = await fetchTvShow(params.id);
-    console.log(data);
     setMovie(data);
   };
 

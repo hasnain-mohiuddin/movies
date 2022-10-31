@@ -11,7 +11,7 @@ const MovieReviews = () => {
 
   useEffect(() => {
     getMovieReviews();
-  }, []);
+  }, []); // eslint-disable-line
 
   const getMovieReviews = async () => {
     try {

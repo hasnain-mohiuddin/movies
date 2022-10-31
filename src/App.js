@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
 
 import { auth } from "./firebase.js";
 import Navbar from "./components/Navbar.js";
-import SignIn from "./components/Signin.js";
-import Signup from "./components/Signup.js";
-import Dashboard from "./components/Dashboard.js";
 import UserContext from "./context/userContext.js";
-import RequireAuth from "./components/RequireAuth";
-import DetailsPage from "./components/DetailsPage";
+import { switchRoutes } from "./routes/appRoutes.js";
 
 function App() {
   const [user, setUser] = useState({});
@@ -27,18 +23,11 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={user}>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route element={<RequireAuth />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/reviews/:id" element={<DetailsPage />} />
-            <Route path="/tv/:id" element={<DetailsPage />} />
-            <Route path="/movie/:id" element={<DetailsPage />} />
-          </Route>
+          {switchRoutes()}
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

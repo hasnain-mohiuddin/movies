@@ -15,6 +15,7 @@ import { APP_TITLE } from "../utils/constants";
 import DrawerComponent from "./DrawerComponent";
 import UserContext from "../context/userContext";
 import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
+import urls from "../constants/urls";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
@@ -49,13 +50,13 @@ function Navbar() {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [user] = useContext(UserContext);
+  const user = useContext(UserContext);
 
   return (
     <AppBar position="static" sx={{ backgroundColor: NAVY_BLUE_HEXA }}>
       <CssBaseline />
       <Toolbar className={classes.navbar}>
-        <Link to={"/"} className={classes.logo}>
+        <Link to={urls.dashboard} className={classes.logo}>
           {APP_TITLE}
         </Link>
         {isMobile ? (

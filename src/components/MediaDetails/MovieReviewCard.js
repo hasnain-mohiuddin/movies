@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 
-import { truncate } from "../utils/helpers";
+import { truncate } from "../../utils/helpers";
 import UserAvatar from "./UserAvatar";
 
 const MovieReviewCard = ({ review }) => {

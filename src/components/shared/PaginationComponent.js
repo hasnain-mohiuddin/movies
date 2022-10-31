@@ -1,6 +1,6 @@
 import { Pagination } from "@mui/material";
 
-import { WHITE } from "../constants/colors";
+import { WHITE } from "../../constants/colors";
 
 const PaginationComponent = ({ pageCount, onChange }) => {
   return (

@@ -3,13 +3,13 @@ import { Box, Button, Container } from "@mui/material";
 
 import MovieGenres from "./MovieGenres";
 import MoviesGridList from "./MoviesGridList";
-import { SEARCH_MOVIE } from "../constants/constants";
+import { SEARCH_MOVIE } from "../../constants/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
-import { fetchFilteredMedia } from "../services/moviesService";
+import { fetchFilteredMedia } from "../../services/moviesService";
 import SelectMediaType from "./SelectMediaType";
-import { searchOptions } from "../constants/searchOptions";
-import { BLACK, WIHITE_HEXA } from "../constants/colors";
-import Pagination from './PaginationComponent'
+import { searchOptions } from "../../constants/searchOptions";
+import { BLACK, WIHITE_HEXA } from "../../constants/colors";
+import Pagination from '../shared/PaginationComponent'
 
 
 const MovieSearchForm = () => {

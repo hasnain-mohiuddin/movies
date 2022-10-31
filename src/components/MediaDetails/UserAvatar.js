@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 
-import { NAVY_BLUE_HEXA } from "../constants/colors";
-import { GET_CARD_IMAGE_LINK } from "../utils/helpers";
+import { NAVY_BLUE_HEXA } from "../../constants/colors";
+import { GET_CARD_IMAGE_LINK } from "../../utils/helpers";
 
 const avatarStyle = {
   backgroundColor: NAVY_BLUE_HEXA,

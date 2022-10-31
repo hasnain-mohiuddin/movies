@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { InputLabel, FormControl } from "@mui/material";
 
-import { fetchGenres } from "../services/moviesService";
+import { fetchGenres } from "../../services/moviesService";
 import MovieGenresDropdown from "./MovieGenresDropdown";
-import { GENERES_DROP_DOWN_LABEL } from "../constants/constants";
+import { GENERES_DROP_DOWN_LABEL } from "../../constants/constants";
 
 const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   const [genresList, setGenreList] = useState([]);

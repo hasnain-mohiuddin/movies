@@ -4,7 +4,7 @@ import { TextField, FormControl } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { ORANGE_HEXA, WIHITE_HEXA } from "../constants/colors";
+import { ORANGE_HEXA, WIHITE_HEXA } from "../../constants/colors";
 
 const MovieYearDropdown = ({
   setSelectedYear,

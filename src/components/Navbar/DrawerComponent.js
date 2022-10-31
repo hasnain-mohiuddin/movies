@@ -11,7 +11,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { Button } from "@mui/material";
 
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 const useStyles = makeStyles(() => ({
   link: {

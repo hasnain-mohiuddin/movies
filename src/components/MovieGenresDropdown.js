@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuItem, Select } from "@mui/material";
 
-import { WIHITE_HEXA } from "../utils/colors";
+import { WIHITE_HEXA } from "../constants/colors";
 
 const MovieGenresDropdown = ({ genresList, genresType, handleChange }) => {
   return (

@@ -8,9 +8,9 @@ import {
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
-
 import MenuIcon from "@material-ui/icons/Menu";
 import { Button } from "@mui/material";
+
 import { auth } from "../firebase";
 
 const useStyles = makeStyles(() => ({

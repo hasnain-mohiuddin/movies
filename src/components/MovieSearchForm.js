@@ -2,12 +2,12 @@ import React, { useMemo, useState } from "react";
 import { Button, Container } from "@mui/material";
 
 import MovieGenres from "./MovieGenres";
-import { ORANGE_HEXA } from "../utils/colors";
+import { ORANGE_HEXA } from "../constants/colors";
 import MoviesGridList from "./MoviesGridList";
-import { SEARCH_MOVIE } from "../utils/constants";
+import { SEARCH_MOVIE } from "../constants/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
 import { fetchFilteredMedia } from "../services/moviesService";
-import SelectwithOptions from "./SelectwithOptions";
+import SelectMediaType from "./SelectMediaType";
 import { searchOptions } from "../constants/searchOptions";
 
 const MovieSearchForm = () => {
@@ -75,8 +75,7 @@ const MovieSearchForm = () => {
             setSelectedYear={setSelectedYear}
             setFilterMedia={() => setFilterMedia([])}
           />
-          {/* <ApiKeyTestField SetApiKey={SetApiKey} /> */}
-          <SelectwithOptions
+          <SelectMediaType
             selected={selectedMediaType}
             setSelected={setSelectedMediaType}
             setFilterMedia={() => setFilterMedia([])}

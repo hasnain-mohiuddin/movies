@@ -1,5 +1,4 @@
 import { useNavigate, Link } from "react-router-dom";
-import * as yup from "yup";
 import { useFormik } from "formik";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
@@ -13,20 +12,11 @@ import {
   Avatar,
 } from "@mui/material";
 
-import { auth } from "../firebase";
+import { auth } from "../../../firebase";
+import urls from "../../../constants/urls";
+import { validationSchema } from "../../../schema/Auth";
 
-const validationSchema = yup.object({
-  email: yup
-    .string("Enter your email")
-    .email("Enter a valid email")
-    .required("Email is required"),
-  password: yup
-    .string("Enter your password")
-    .min(6, "Password should be of minimum 6 characters length")
-    .required("Password is required"),
-});
-
-export default function Signup() {
+export default function SignIn() {
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -37,12 +27,12 @@ export default function Signup() {
     validationSchema: validationSchema,
     onSubmit: (values, { setErrors }) => {
       auth
-        .createUserWithEmailAndPassword(values.email, values.password)
+        .signInWithEmailAndPassword(values.email, values.password)
         .then(() => {
           navigate("/", { replace: true });
         })
         .catch(() => {
-          setErrors({ email: "Email already exists" });
+          setErrors({ email: "Invalid Email or Password" });
         });
     },
   });
@@ -62,7 +52,7 @@ export default function Signup() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign Up
+          Sign in
         </Typography>
         <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -100,11 +90,11 @@ export default function Signup() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            Sign In
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to={"/signin"}>Don&#39;t have an account? Sign in</Link>
+              <Link to={urls.signup}>Don&#39;t have an account? Sign up</Link>
             </Grid>
           </Grid>
         </Box>

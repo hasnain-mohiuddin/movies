@@ -1,6 +1,7 @@
 import React from "react";
-import { Typography, Container, Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { Typography, Container, Rating } from "@mui/material";
+
 import { GET_RATING_SATRS, GET_RATING_SCORE } from "../utils/constants";
 
 const CardRatings = ({ averageScore }) => {

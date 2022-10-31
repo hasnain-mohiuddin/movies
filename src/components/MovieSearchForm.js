@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button, Container } from "@mui/material";
+
 import MovieGenres from "./MovieGenres";
-import MovieYearDropdown from "./MovieYearDropdown";
-import ApiKeyTestField from "./ApiKeyTestField";
-import { SEARCH_MOVIE } from "../utils/constants";
 import { ORANGE_HEXA } from "../utils/colors";
 import MoviesGridList from "./MoviesGridList";
+import ApiKeyTestField from "./ApiKeyTestField";
+import { SEARCH_MOVIE } from "../utils/constants";
+import MovieYearDropdown from "./MovieYearDropdown";
 import { fetchFilteredMovies } from "../services/moviesService";
 
 const MovieSearchForm = () => {

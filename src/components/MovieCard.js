@@ -7,15 +7,18 @@ import CardRatings from "./CardRatings";
 import { GET_CARD_IMAGE_LINK } from "../utils/constants";
 
 const MovieCard = ({ movie }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const navigateToMediaDetails = () => {
-    navigate(`/${movie.media_type}/${movie.id}`)
-  }
+    navigate(`/${movie.media_type}/${movie.id}`);
+  };
 
   return (
     <>
-      <Card sx={{ minWidth: 250, m: 1, borderRadius: 4, cursor: 'pointer' }} onClick={navigateToMediaDetails}>
+      <Card
+        sx={{ minWidth: 250, m: 1, borderRadius: 4, cursor: "pointer" }}
+        onClick={navigateToMediaDetails}
+      >
         <CardMedia
           component="img"
           alt="Movie Image"

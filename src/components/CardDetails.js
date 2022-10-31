@@ -5,7 +5,7 @@ const CardDetails = ({ movieName, releaseDate }) => {
   function truncate(source, size) {
     return source.length > size ? source.slice(0, size - 1) + "…" : source;
   }
-  
+
   return (
     <CardContent>
       <Typography

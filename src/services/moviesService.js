@@ -25,7 +25,7 @@ export const fetchMovie = (id) =>
     `/movie/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
   );
 
-  export const fetchTvShow = (id) =>
+export const fetchTvShow = (id) =>
   axios.get(
     `/tv/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
   );

@@ -1,7 +1,8 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { FORM_HEADER_TITLE } from "../utils/constants";
+
 import { ORANGE_HEXA } from "../utils/colors";
+import { FORM_HEADER_TITLE } from "../utils/constants";
 
 const MoviesFormHeader = () => {
   return (

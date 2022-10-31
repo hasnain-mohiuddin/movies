@@ -1,4 +1,4 @@
-import { Divider } from '@mui/material';
+import { Divider } from "@mui/material";
 
 import MovieDetails from "./MoviesDetails";
 import MovieReviews from "./MovieReviews";

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { AppBar, Toolbar, CssBaseline, makeStyles } from "@material-ui/core";
 
-import UserContext from "../context/userContext";
-import { APP_TITLE } from "../utils/constants";
-import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
-import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
 import { auth } from "../firebase";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import { APP_TITLE } from "../utils/constants";
+import UserContext from "../context/userContext";
+import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {

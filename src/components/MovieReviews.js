@@ -4,22 +4,29 @@ import { Container, Typography } from "@mui/material";
 
 import { fetchMovieReviews } from "../services/moviesService";
 import MovieReviewCard from "./MovieReviewCard";
+import PaginationComponent from "./PaginationComponent";
 
 const MovieReviews = () => {
   const params = useParams();
   const [reviews, setReview] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
 
   useEffect(() => {
-    getMovieReviews();
+    getMovieReviews(1);
   }, []); // eslint-disable-line
 
-  const getMovieReviews = async () => {
+  const getMovieReviews = async (pageNumber) => {
     try {
-      const { data } = await fetchMovieReviews(params.id);
+      const { data } = await fetchMovieReviews(params.id, pageNumber);
+      setPageCount(data.total_pages);
       setReview(data.results);
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const handleChange = (event, value) => {
+    getMovieReviews(value);
   };
 
   return (
@@ -32,6 +39,12 @@ const MovieReviews = () => {
           {reviews.map((review) => (
             <MovieReviewCard key={review.id} review={review} />
           ))}
+          {pageCount > 1 && (
+            <PaginationComponent
+              pageCount={pageCount}
+              onChange={handleChange}
+            />
+          )}
         </Container>
       ) : (
         <Typography variant="h4" sx={{ my: 5, textAlign: "center" }}>

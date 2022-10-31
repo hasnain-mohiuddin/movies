@@ -1,13 +1,15 @@
 import React from "react";
 import { Grid } from "@mui/material";
 
-import MovieCard from "./MovieCard";
+import MovieCard from "./MovieCard/MovieCard";
 
 const MoviesGridList = ({ moviesList }) => {
   return moviesList.length > 0 ? (
-    <Grid container direction="row" sx={{ overflowX: "scroll" }} wrap="nowrap">
+    <Grid container direction="row" spacing={4}>
       {moviesList.map((movie) => (
-        <MovieCard movie={movie} key={movie.id} />
+        <Grid key={movie.id} item xs={3}>
+          <MovieCard movie={movie} />
+        </Grid>
       ))}
     </Grid>
   ) : null;

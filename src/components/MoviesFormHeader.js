@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-import { BLACK } from "../constants/colors";
+import { WHITE } from "../constants/colors";
 import { FORM_HEADER_TITLE } from "../constants/constants";
 
 const MoviesFormHeader = () => {
@@ -11,7 +11,7 @@ const MoviesFormHeader = () => {
       variant="h3"
       p={2}
       sx={{
-        color: BLACK,
+        color: WHITE,
       }}
     >
       {FORM_HEADER_TITLE}

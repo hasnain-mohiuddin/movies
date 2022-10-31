@@ -1,10 +1,9 @@
 import React from "react";
 import { CardContent, Typography } from "@mui/material";
 
+import { truncate } from "../utils/helpers";
+
 const CardDetails = ({ movieName, releaseDate }) => {
-  function truncate(source, size) {
-    return source.length > size ? source.slice(0, size - 1) + "…" : source;
-  }
 
   return (
     <CardContent>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardMedia } from "@mui/material";
+import { Box, Card, CardMedia } from "@mui/material";
 
 import CardDetails from "./CardDetails";
 import CardRatings from "./CardRatings";
@@ -28,7 +28,9 @@ const MovieCard = ({ movie }) => {
           movieName={movie.title || movie.name}
           releaseDate={movie.first_air_date || movie.release_date}
         />
-        <CardRatings averageScore={movie.vote_average} />
+        <Box sx={{ marginBottom: 1 }}>
+          <CardRatings averageScore={movie.vote_average} />
+        </Box>
       </Card>
     </>
   );

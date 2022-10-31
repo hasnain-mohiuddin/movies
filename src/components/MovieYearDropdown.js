@@ -6,7 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { ORANGE_HEXA, WIHITE_HEXA } from "../utils/colors";
 
-const MovieYearDropdown = ({ setSelectedYear, selectedYear }) => {
+const MovieYearDropdown = ({ setSelectedYear, selectedYear, setFilterMedia }) => {
   return (
     <FormControl
       sx={{
@@ -33,7 +33,8 @@ const MovieYearDropdown = ({ setSelectedYear, selectedYear }) => {
           views={["year"]}
           label="Year"
           value={selectedYear}
-          onChange={(newValue) => {
+          onChange={(newValue) => {    
+            setFilterMedia();
             setSelectedYear(newValue);
           }}
           renderInput={(params) => (

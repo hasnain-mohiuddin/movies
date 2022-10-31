@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Container } from "@mui/material";
 
 import MovieGenres from "./MovieGenres";
 import { ORANGE_HEXA } from "../utils/colors";
 import MoviesGridList from "./MoviesGridList";
-import ApiKeyTestField from "./ApiKeyTestField";
 import { SEARCH_MOVIE } from "../utils/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
-import { fetchFilteredMovies } from "../services/moviesService";
+import { fetchFilteredMedia } from "../services/moviesService";
+import SelectwithOptions from "./SelectwithOptions";
+import { searchOptions } from "../constants/searchOptions";
 
 const MovieSearchForm = () => {
   const [genresType, setGenresType] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date());
-  const [apiKey, SetApiKey] = useState("");
-  const [filterMovies, setFilterMovies] = useState([]);
+  const [selectedMediaType, setSelectedMediaType] = useState(searchOptions);
+  const [filterMedia, setFilterMedia] = useState([]);
 
-  const handleSubmitForm = async (type, year, apiKey) => {
+  const isSearchDisabled = useMemo(
+    () => !genresType || !selectedYear || !selectedMediaType,
+    [genresType, selectedMediaType, selectedYear]
+  );
+
+  const handleSubmitForm = async () => {
+    const year = selectedYear.toString().split(" ")[3];
     try {
-      const { data } = await fetchFilteredMovies(apiKey, year, type);
-      setFilterMovies(data.results);
+        selectedMediaType.map(async (media) => {
+          const { data } = await fetchFilteredMedia(media, year, genresType);
+          setFilterMedia([...filterMedia, ...data.results]);
+        });
     } catch (e) {
       console.log(e);
     }
@@ -28,7 +37,7 @@ const MovieSearchForm = () => {
     return (
       <Button
         variant="outlined"
-        disabled={!genresType || !selectedYear || !apiKey}
+        disabled={isSearchDisabled}
         color="inherit"
         size="large"
         sx={{
@@ -38,13 +47,7 @@ const MovieSearchForm = () => {
           fontSize: "15px",
           borderRadius: "20px",
         }}
-        onClick={() =>
-          handleSubmitForm(
-            genresType,
-            selectedYear.toString().split(" ")[3],
-            apiKey
-          )
-        }
+        onClick={handleSubmitForm}
       >
         {SEARCH_MOVIE}
       </Button>
@@ -62,18 +65,28 @@ const MovieSearchForm = () => {
             justifyContent: "space-around",
           }}
         >
-          <MovieGenres genresType={genresType} setGenresType={setGenresType} />
+          <MovieGenres 
+            genresType={genresType}
+            setGenresType={setGenresType}
+            setFilterMedia={() => setFilterMedia([])}
+          />
           <MovieYearDropdown
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
+            setFilterMedia={() => setFilterMedia([])}
           />
-          <ApiKeyTestField SetApiKey={SetApiKey} />
+          {/* <ApiKeyTestField SetApiKey={SetApiKey} /> */}
+          <SelectwithOptions
+            selected={selectedMediaType}
+            setSelected={setSelectedMediaType}
+            setFilterMedia={() => setFilterMedia([])}
+          />
         </Container>
         <Container sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
           {formSubmitButton()}
         </Container>
       </form>
-      {filterMovies ? <MoviesGridList moviesList={filterMovies} /> : null}
+      {filterMedia ? <MoviesGridList moviesList={filterMedia} /> : null}
     </>
   );
 };

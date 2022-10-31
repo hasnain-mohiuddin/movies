@@ -6,7 +6,7 @@ import { fetchGenres } from "../services/moviesService";
 import MovieGenresDropdown from "./MovieGenresDropdown";
 import { GENERES_DROP_DOWN_LABEL } from "../utils/constants";
 
-const MovieGenres = ({ genresType, setGenresType }) => {
+const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   const [genresList, setGenreList] = useState([]);
 
   const getGenres = async () => {
@@ -18,7 +18,10 @@ const MovieGenres = ({ genresType, setGenresType }) => {
     }
   };
 
-  const handleChange = (event) => setGenresType(event.target.value);
+  const handleChange = (event) => {
+    setFilterMedia();
+    setGenresType(event.target.value);
+  }
 
   const getGenresLabel = () => (
     <InputLabel

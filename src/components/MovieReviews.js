@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 import { fetchMovieReviews } from "../services/moviesService";
+import MovieReviewCard from "./MovieReviewCard";
 
 const MovieReviews = () => {
   const params = useParams();
@@ -14,22 +15,27 @@ const MovieReviews = () => {
 
   const getMovieReviews = async () => {
     const { data } = await fetchMovieReviews(params.id);
-    setReview(data.review);
+    console.log(data);
+    setReview(data.results);
   };
 
   return (
-    <Container sx={{ mx: 10, my: 5}}>
-      <Typography variant="p" fontSize={25} fontWeight='bold'>
+    <Container sx={{ mx: 10, my: 5 }}>
+      <Typography variant="p" fontSize={25} fontWeight="bold">
         Reviews ({reviews ? reviews.length : 0})
       </Typography>
-      {reviews ? (
+      {reviews.length > 0 ? (
         <Container>
-          <Box></Box>
+          {reviews.map((review) => (
+            <MovieReviewCard key={review.id} review={review} />
+          ))}
         </Container>
       ) : (
-        <Typography variant="h4" sx={{ my: 5, textAlign: 'center'}}>No Reviews Yet</Typography>
+        <Typography variant="h4" sx={{ my: 5, textAlign: "center" }}>
+          No Reviews Yet
+        </Typography>
       )}
-    </ Container>
+    </Container>
   );
 };
 

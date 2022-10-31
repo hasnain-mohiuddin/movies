@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Box, Container, Typography } from "@mui/material";
-import { CardMedia } from "@mui/material";
+import { useParams, useLocation } from "react-router-dom";
+import { Box, Container, Typography, CardMedia } from "@mui/material";
 
-import { fetchMovie } from "../services/moviesService";
+import { fetchMovie, fetchTvShow } from "../services/moviesService";
 import { GET_CARD_IMAGE_LINK } from "../utils/constants";
 import CardRatings from "./CardRatings";
 
 const MovieDetails = () => {
   const params = useParams();
+  const location = useLocation();
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
-    getMovieById();
+    if (location.pathname.includes("movie")) getMovieById();
+    else getTVShowById();
   }, []);
 
   const getMovieById = async () => {
     const { data } = await fetchMovie(params.id);
-    console.log(data)
+    console.log(data);
+    setMovie(data);
+  };
+
+  const getTVShowById = async () => {
+    const { data } = await fetchTvShow(params.id);
+    console.log(data);
     setMovie(data);
   };
 

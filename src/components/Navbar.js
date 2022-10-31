@@ -11,10 +11,10 @@ import {
 import { auth } from "../firebase";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { APP_TITLE } from "../utils/constants";
+import { APP_TITLE } from "../constants/constants";
 import DrawerComponent from "./DrawerComponent";
 import UserContext from "../context/userContext";
-import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
+import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../constants/colors";
 import urls from "../constants/urls";
 
 const useStyles = makeStyles((theme) => ({

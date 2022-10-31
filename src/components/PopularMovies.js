@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Container, Typography } from "@mui/material";
 
 import MoviesGridList from "./MoviesGridList";
-import { POPULAR_MOVIES_TITLE } from "../utils/constants";
+import { POPULAR_MOVIES_TITLE } from "../constants/constants";
 import { fetchTrendingMovies } from "../services/moviesService";
-import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
+import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../constants/colors";
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);

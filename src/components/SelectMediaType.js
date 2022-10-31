@@ -49,7 +49,7 @@ const MenuProps = {
 };
 
 
-function SelectwithOptions({ selected, setSelected, setFilterMedia}) {
+function SelectMediaType({ selected, setSelected, setFilterMedia}) {
   const classes = useStyles();
   const isAllSelected =
     searchOptions.length > 0 && selected.length === searchOptions.length;
@@ -108,4 +108,4 @@ function SelectwithOptions({ selected, setSelected, setFilterMedia}) {
   );
 }
 
-export default SelectwithOptions;
+export default SelectMediaType;

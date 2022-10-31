@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { InputLabel, FormControl } from "@mui/material";
 
-import { ORANGE_HEXA } from "../utils/colors";
+import { ORANGE_HEXA } from "../constants/colors";
 import { fetchGenres } from "../services/moviesService";
 import MovieGenresDropdown from "./MovieGenresDropdown";
-import { GENERES_DROP_DOWN_LABEL } from "../utils/constants";
+import { GENERES_DROP_DOWN_LABEL } from "../constants/constants";
 
 const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   const [genresList, setGenreList] = useState([]);
@@ -18,9 +18,9 @@ const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setFilterMedia();
-    setGenresType(event.target.value);
+    setGenresType(e.target.value);
   }
 
   const getGenresLabel = () => (

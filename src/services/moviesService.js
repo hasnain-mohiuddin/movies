@@ -29,3 +29,9 @@ export const fetchTvShow = (id) =>
   axios.get(
     `/tv/${id}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
   );
+
+export const rateMedia = (mediaType, mediaId, rating) =>
+  axios.post(
+    `/${mediaType}/${mediaId}/rating?api_key=${process.env.REACT_APP_TMDB_API_KEY}`, 
+    { value: rating }
+  );

@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 
-import { ORANGE_HEXA, WIHITE_HEXA } from "../utils/colors";
+import { MediaTypes } from "../constants/mediaTypes";
+import { ORANGE_HEXA, WIHITE_HEXA } from "../constants/colors";
 
 const MediaType = () => {
-  const [mediaList, setMediaList] = useState([{
-    id: 1,
-    name: 'Movie'
-  }, {
-    id: 2,
-    name: 'Tv Shows'
-  }]);
+  const [mediaList, setMediaList] = useState(MediaTypes);
 
-  const handleChange = (event) => setMediaList(event.target.value);
+  const handleChange = (e) => setMediaList(e.target.value);
 
   const getGenresLabel = () => (
     <InputLabel
@@ -38,24 +33,24 @@ const MediaType = () => {
     <FormControl sx={{ width: "25%", minWidth: "200px", m: 1 }}>
       {getGenresLabel()}
       <Select
-      labelId="media-select-dropdown"
-      id="media-select-dropdown"
-      value={mediaList[0].name}
-      label="Select Genres"
-      onChange={handleChange}
-      sx={{
-        backgroundColor: WIHITE_HEXA,
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-      }}
-    >
-      {mediaList.map((item) => (
-        <MenuItem key={item.id} value={item.id}>
-          {item.name}
-        </MenuItem>
-      ))}
-    </Select>
+        labelId="media-select-dropdown"
+        id="media-select-dropdown"
+        value={mediaList[0].name}
+        label="Select Genres"
+        onChange={handleChange}
+        sx={{
+          backgroundColor: WIHITE_HEXA,
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+        }}
+      >
+        {mediaList.map((item) => (
+          <MenuItem key={item.id} value={item.id}>
+            {item.name}
+          </MenuItem>
+        ))}
+      </Select>
     </FormControl>
   );
 };

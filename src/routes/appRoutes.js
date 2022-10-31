@@ -1,10 +1,10 @@
 import { Route } from "react-router-dom";
 
-import Dashboard from "../components/Dashboard";
-import DetailsPage from "../components/DetailsPage";
-import Signin from "../components/Signin";
-import Signup from "../components/Signup";
+import Dashboard from "../views/Home/Dashboard";
+import DetailsPage from "../views/MediaDetails/DetailsPage";
 import urls from "../constants/urls";
+import Signin from "../views/Auth/Signin/Signin";
+import Signup from "../views/Auth/Signup/Signup";
 import RequireAuth from "./RequireAuth";
 
 const appRoutes = [

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { InputLabel, FormControl } from "@mui/material";
 
-import { ORANGE_HEXA } from "../constants/colors";
 import { fetchGenres } from "../services/moviesService";
 import MovieGenresDropdown from "./MovieGenresDropdown";
 import { GENERES_DROP_DOWN_LABEL } from "../constants/constants";
@@ -25,18 +24,16 @@ const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
 
   const getGenresLabel = () => (
     <InputLabel
-      sx={{
-        "&.Mui-focused": {
-          color: ORANGE_HEXA,
-          fontSize: "25px",
-          fontWeight: "700",
-          textAlign: "start",
-          lineHeight: "1.8em",
-        },
-        fontSize: "18px",
-        fontWeight: "700",
-        color: ORANGE_HEXA,
-      }}
+      // sx={{
+      //   "&.Mui-focused": {
+      //     fontSize: "25px",
+      //     fontWeight: "700",
+      //     textAlign: "start",
+      //     lineHeight: "1.8em",
+      //   },
+      //   fontSize: "18px",
+      //   fontWeight: "700",
+      // }}
       id="genres-select-dropdown"
     >
       {GENERES_DROP_DOWN_LABEL}

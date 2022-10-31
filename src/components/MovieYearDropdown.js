@@ -17,12 +17,12 @@ const MovieYearDropdown = ({
         width: "25%",
         minWidth: "200px",
         m: 1,
-        ".css-1sumxir-MuiFormLabel-root-MuiInputLabel-root": {
-          color: ORANGE_HEXA,
-          fontWeight: "700",
-          fontSize: "25px",
-          lineHeight: "1.8em",
-        },
+        // ".css-1sumxir-MuiFormLabel-root-MuiInputLabel-root": {
+        //   color: ORANGE_HEXA,
+        //   fontWeight: "700",
+        //   fontSize: "25px",
+        //   lineHeight: "1.8em",
+        // },
       }}
     >
       <LocalizationProvider

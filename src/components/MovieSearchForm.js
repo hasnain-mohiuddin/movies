@@ -2,13 +2,13 @@ import React, { useMemo, useState } from "react";
 import { Button, Container } from "@mui/material";
 
 import MovieGenres from "./MovieGenres";
-import { ORANGE_HEXA } from "../constants/colors";
 import MoviesGridList from "./MoviesGridList";
 import { SEARCH_MOVIE } from "../constants/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
 import { fetchFilteredMedia } from "../services/moviesService";
 import SelectMediaType from "./SelectMediaType";
 import { searchOptions } from "../constants/searchOptions";
+import { BLACK, WIHITE_HEXA } from "../constants/colors";
 
 const MovieSearchForm = () => {
   const [genresType, setGenresType] = useState("");
@@ -36,16 +36,14 @@ const MovieSearchForm = () => {
   const formSubmitButton = () => {
     return (
       <Button
-        variant="outlined"
+        variant="contained"
         disabled={isSearchDisabled}
-        color="inherit"
         size="large"
         sx={{
-          backgroundColor: ORANGE_HEXA,
+          color: isSearchDisabled ? BLACK : WIHITE_HEXA,
           p: 2,
-          fontWeight: "bold",
-          fontSize: "15px",
-          borderRadius: "20px",
+          borderRadius: 2,
+          marginBottom: 3
         }}
         onClick={handleSubmitForm}
       >

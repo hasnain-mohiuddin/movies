@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 
-import { fetchMovieReviews } from "../services/moviesService";
+import { fetchMovieReviews } from "../../services/moviesService";
 import MovieReviewCard from "./MovieReviewCard";
-import PaginationComponent from "./PaginationComponent";
+import PaginationComponent from "../shared/PaginationComponent";
 
 const MovieReviews = () => {
   const params = useParams();

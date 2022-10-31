@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { Box, Container, Typography, CardMedia } from "@mui/material";
 
-import { fetchMovie, fetchTvShow } from "../services/moviesService";
-import { GET_CARD_IMAGE_LINK } from "../utils/helpers";
-import CardRatings from "./CardRatings";
+import { fetchMovie, fetchTvShow } from "../../services/moviesService";
+import { GET_CARD_IMAGE_LINK } from "../../utils/helpers";
+import CardRatings from "../shared/CardRatings";
 
 const MovieDetails = () => {
   const params = useParams();

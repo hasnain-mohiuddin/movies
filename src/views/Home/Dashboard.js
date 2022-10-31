@@ -1,5 +1,5 @@
-import PopularMovies from "../../components/PopularMovies";
-import SearchFormSection from "../../components/SearchFormSection";
+import PopularMovies from "../../components/Home/PopularMovies";
+import SearchFormSection from "../../components/Home/SearchFormSection";
 
 const Dashboard = () => {
   return (

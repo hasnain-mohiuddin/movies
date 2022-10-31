@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes } from "react-router-dom";
 
 import { auth } from "./firebase.js";
-import Navbar from "./components/Navbar.js";
+import Navbar from "./components/Navbar/Navbar";
 import UserContext from "./context/userContext.js";
 import { switchRoutes } from "./routes/appRoutes.js";
 

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
-import CardRatings from "./CardRatings";
-import { rateMedia } from "../services/moviesService";
+import CardRatings from "../shared/CardRatings";
+import { rateMedia } from "../../services/moviesService";
 
 const RateMedia = () => {
   const params = useParams();

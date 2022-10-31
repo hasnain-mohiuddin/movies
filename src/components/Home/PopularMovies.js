@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 
 import MoviesGridList from "./MoviesGridList";
-import { POPULAR_MOVIES_TITLE } from "../constants/constants";
-import { fetchTrendingMovies } from "../services/moviesService";
-import { GRAY9, WHITE } from "../constants/colors";
-import Pagination from './PaginationComponent'
+import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
+import { fetchTrendingMovies } from "../../services/moviesService";
+import { GRAY9, WHITE } from "../../constants/colors";
+import Pagination from '../shared/PaginationComponent'
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);

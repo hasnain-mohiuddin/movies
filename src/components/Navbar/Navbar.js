@@ -8,14 +8,14 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { APP_TITLE } from "../constants/constants";
+import { APP_TITLE } from "../../constants/constants";
 import DrawerComponent from "./DrawerComponent";
-import UserContext from "../context/userContext";
-import {  GRAY9, WHITE } from "../constants/colors";
-import urls from "../constants/urls";
+import UserContext from "../../context/userContext";
+import {  GRAY9, WHITE } from "../../constants/colors";
+import urls from "../../constants/urls";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {

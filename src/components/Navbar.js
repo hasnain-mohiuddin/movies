@@ -1,10 +1,18 @@
 import React, { useContext } from "react";
-import { AppBar, Toolbar, CssBaseline, makeStyles } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  makeStyles,
+  useTheme,
+  useMediaQuery,
+} from "@material-ui/core";
 
 import { auth } from "../firebase";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { APP_TITLE } from "../utils/constants";
+import DrawerComponent from "./DrawerComponent";
 import UserContext from "../context/userContext";
 import { NAVY_BLUE_HEXA, LIGHT_GREY_HEXA } from "../utils/colors";
 
@@ -39,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [user] = useContext(UserContext);
 
   return (
@@ -48,29 +58,23 @@ function Navbar() {
         <Link to={"/"} className={classes.logo}>
           {APP_TITLE}
         </Link>
-        <div className={classes.navlinks}>
-          {!user && (
-            <Link to={"/signup"} className={classes.link}>
-              Sign Up
-            </Link>
-          )}
-          {!user && (
-            <Link to={"/signin"} className={classes.link}>
-              Sign In
-            </Link>
-          )}
-          {user && (
-            <Button
-              className={classes.link}
-              sx={{ color: "white" }}
-              onClick={() => {
-                auth.signOut();
-              }}
-            >
-              Sign Out
-            </Button>
-          )}
-        </div>
+        {isMobile ? (
+          user && <DrawerComponent user={user} />
+        ) : (
+          <div className={classes.navlinks}>
+            {user && (
+              <Button
+                className={classes.link}
+                sx={{ color: "white" }}
+                onClick={() => {
+                  auth.signOut();
+                }}
+              >
+                Sign Out
+              </Button>
+            )}
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   );

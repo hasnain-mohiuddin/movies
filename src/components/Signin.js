@@ -1,5 +1,6 @@
-import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import * as yup from "yup";
+import { useFormik } from "formik";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
   Container,
@@ -14,25 +15,37 @@ import {
 
 import { auth } from "../firebase";
 
+const validationSchema = yup.object({
+  email: yup
+    .string("Enter your email")
+    .email("Enter a valid email")
+    .required("Email is required"),
+  password: yup
+    .string("Enter your password")
+    .min(6, "Password should be of minimum 6 characters length")
+    .required("Password is required"),
+});
+
 export default function SignIn() {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
   let navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
-        navigate("/", { replace: true });
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  };
-
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values, { setErrors }) => {
+      auth
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then(() => {
+          navigate("/", { replace: true });
+        })
+        .catch(() => {
+          setErrors({ email: "Invalid Email or Password" });
+        });
+    },
+  });
 
   return (
     <Container component="main" maxWidth="xs">
@@ -51,31 +64,33 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                required
                 fullWidth
                 id="email"
-                label="Email Address"
                 name="email"
-                autoComplete="email"
-                value={credentials.email}
-                onChange={handleChange}
+                label="Email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                required
                 fullWidth
+                id="password"
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
-                autoComplete="new-password"
-                value={credentials.password}
-                onChange={handleChange}
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
               />
             </Grid>
           </Grid>

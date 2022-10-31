@@ -42,7 +42,7 @@ export default function Signup() {
           navigate("/", { replace: true });
         })
         .catch(() => {
-          setErrors({ email: "Invalid Email or Password" });
+          setErrors({ email: "Email already exists" });
         });
     },
   });

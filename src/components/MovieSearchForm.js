@@ -16,8 +16,12 @@ const MovieSearchForm = () => {
   const [filterMovies, setFilterMovies] = useState([]);
 
   const handleSubmitForm = async (type, year, apiKey) => {
-    const { data } = await fetchFilteredMovies(apiKey, year, type);
-    setFilterMovies(data.results);
+    try {
+      const { data } = await fetchFilteredMovies(apiKey, year, type);
+      setFilterMovies(data.results);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const formSubmitButton = () => {

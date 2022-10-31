@@ -11,20 +11,20 @@ import { searchOptions } from "../constants/searchOptions";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    width: 300
+    width: 300,
   },
   indeterminateColor: {
-    color: "#f50057"
+    color: "#f50057",
   },
   selectAllText: {
-    fontWeight: 500
+    fontWeight: 500,
   },
   selectedAll: {
     backgroundColor: "rgba(0, 0, 0, 0.08)",
     "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.08)"
-    }
-  }
+      backgroundColor: "rgba(0, 0, 0, 0.08)",
+    },
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -33,23 +33,22 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
+      width: 250,
+    },
   },
   getContentAnchorEl: null,
   anchorOrigin: {
     vertical: "bottom",
-    horizontal: "center"
+    horizontal: "center",
   },
   transformOrigin: {
     vertical: "top",
-    horizontal: "center"
+    horizontal: "center",
   },
-  variant: "menu"
+  variant: "menu",
 };
 
-
-function SelectMediaType({ selected, setSelected, setFilterMedia}) {
+function SelectMediaType({ selected, setSelected, setFilterMedia }) {
   const classes = useStyles();
   const isAllSelected =
     searchOptions.length > 0 && selected.length === searchOptions.length;
@@ -58,7 +57,9 @@ function SelectMediaType({ selected, setSelected, setFilterMedia}) {
     setFilterMedia();
     const value = event.target.value;
     if (value[value.length - 1] === "all") {
-      setSelected(selected.length === searchOptions.length ? [] : searchOptions);
+      setSelected(
+        selected.length === searchOptions.length ? [] : searchOptions
+      );
       return;
     }
     setSelected(value);
@@ -78,7 +79,7 @@ function SelectMediaType({ selected, setSelected, setFilterMedia}) {
         <MenuItem
           value="all"
           classes={{
-            root: isAllSelected ? classes.selectedAll : ""
+            root: isAllSelected ? classes.selectedAll : "",
           }}
         >
           <ListItemIcon>

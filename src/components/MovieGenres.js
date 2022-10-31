@@ -21,7 +21,7 @@ const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   const handleChange = (e) => {
     setFilterMedia();
     setGenresType(e.target.value);
-  }
+  };
 
   const getGenresLabel = () => (
     <InputLabel

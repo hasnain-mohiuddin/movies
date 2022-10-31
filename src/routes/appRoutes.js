@@ -39,5 +39,7 @@ export const switchRoutes = () =>
         </Route>
       );
 
-    return <Route path={route.path} key={route.path} element={route.component} />;
+    return (
+      <Route path={route.path} key={route.path} element={route.component} />
+    );
   });

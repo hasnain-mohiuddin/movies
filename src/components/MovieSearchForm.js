@@ -24,10 +24,10 @@ const MovieSearchForm = () => {
   const handleSubmitForm = async () => {
     const year = selectedYear.toString().split(" ")[3];
     try {
-        selectedMediaType.map(async (media) => {
-          const { data } = await fetchFilteredMedia(media, year, genresType);
-          setFilterMedia([...filterMedia, ...data.results]);
-        });
+      selectedMediaType.map(async (media) => {
+        const { data } = await fetchFilteredMedia(media, year, genresType);
+        setFilterMedia([...filterMedia, ...data.results]);
+      });
     } catch (e) {
       console.log(e);
     }
@@ -65,7 +65,7 @@ const MovieSearchForm = () => {
             justifyContent: "space-around",
           }}
         >
-          <MovieGenres 
+          <MovieGenres
             genresType={genresType}
             setGenresType={setGenresType}
             setFilterMedia={() => setFilterMedia([])}

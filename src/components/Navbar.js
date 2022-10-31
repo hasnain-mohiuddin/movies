@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { APP_TITLE } from "../constants/constants";
 import DrawerComponent from "./DrawerComponent";
 import UserContext from "../context/userContext";
-import {  LIGHT_GREY_HEXA, NAVY_BLUE_HEXA } from "../constants/colors";
+import {  GRAY9, WHITE } from "../constants/colors";
 import urls from "../constants/urls";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: "1",
     cursor: "pointer",
     fontFamily: "Raleway, Arial",
-    color: LIGHT_GREY_HEXA,
+    color: WHITE,
     textDecoration: "none",
     fontSize: "2.5rem",
   },
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "20px",
     marginLeft: theme.spacing(20),
     "&:hover": {
-      color: LIGHT_GREY_HEXA,
+      color: WHITE,
     },
   },
   navbar: {
@@ -53,7 +53,7 @@ function Navbar() {
   const user = useContext(UserContext);
 
   return (
-    <AppBar position="static" style={{ background: NAVY_BLUE_HEXA }}>
+    <AppBar position="static" style={{ background: GRAY9 }}>
       <CssBaseline />
       <Toolbar className={classes.navbar}>
         <Link to={urls.dashboard} className={classes.logo}>

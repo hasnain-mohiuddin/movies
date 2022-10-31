@@ -15,6 +15,10 @@ import {
 import { auth } from "../../../firebase";
 import urls from "../../../constants/urls";
 import { validationSchema } from "../../../schema/Auth";
+import {
+  createSessionId,
+  setSessionId,
+} from "../../../services/sessionService";
 
 export default function SignIn() {
   let navigate = useNavigate();
@@ -28,7 +32,10 @@ export default function SignIn() {
     onSubmit: (values, { setErrors }) => {
       auth
         .signInWithEmailAndPassword(values.email, values.password)
-        .then(() => {
+        .then(async () => {
+          const { data } = await createSessionId();
+          setSessionId(data.guest_session_id);
+
           navigate("/", { replace: true });
         })
         .catch(() => {

@@ -1,8 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 
+import { truncate } from "../utils/helpers";
 import UserAvatar from "./UserAvatar";
 
 const MovieReviewCard = ({ review }) => {
+  const [readMore, setReadMore] = useState(false);
+
+  const toggleReadMore = () => setReadMore(!readMore);
+
   return (
     <Box sx={{ p: 4, border: "1px solid black", my: 5, borderRadius: 4 }}>
       <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
@@ -27,7 +33,16 @@ const MovieReviewCard = ({ review }) => {
           </Typography>
         </Box>
       </Box>
-      <Typography>{review.content}</Typography>
+      <Typography>
+        {readMore ? truncate(review.content, -1) :truncate(review.content, 250)}{" "}
+        <Button
+          variant="text"
+          sx={{ textTransform: "none", p: 0 }}
+          onClick={toggleReadMore}
+        >
+          {!readMore && review.content.length > 250 ? "Read more" : "Read less"}
+        </Button>
+      </Typography>
     </Box>
   );
 };

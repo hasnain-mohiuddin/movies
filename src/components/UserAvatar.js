@@ -11,7 +11,6 @@ const avatarStyle = {
 };
 
 const UserAvatar = ({ avatar, author }) => {
-  console.log(avatar);
   return (
     <Avatar
       alt="User Avatar"

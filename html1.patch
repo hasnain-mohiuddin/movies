@@ -1,0 +1,270 @@
+diff --git a/src/components/MovieGenres.js b/src/components/MovieGenres.js
+index b9daff6..f386cfc 100644
+--- a/src/components/MovieGenres.js
++++ b/src/components/MovieGenres.js
+@@ -6,7 +6,7 @@ import { fetchGenres } from "../services/moviesService";
+ import MovieGenresDropdown from "./MovieGenresDropdown";
+ import { GENERES_DROP_DOWN_LABEL } from "../utils/constants";
+ 
+-const MovieGenres = ({ genresType, setGenresType }) => {
++const MovieGenres = ({ genresType, setGenresType, setFilterMedia }) => {
+   const [genresList, setGenreList] = useState([]);
+ 
+   const getGenres = async () => {
+@@ -18,7 +18,10 @@ const MovieGenres = ({ genresType, setGenresType }) => {
+     }
+   };
+ 
+-  const handleChange = (event) => setGenresType(event.target.value);
++  const handleChange = (event) => {
++    setFilterMedia();
++    setGenresType(event.target.value);
++  }
+ 
+   const getGenresLabel = () => (
+     <InputLabel
+diff --git a/src/components/MovieSearchForm.js b/src/components/MovieSearchForm.js
+index 431a3ff..e426484 100644
+--- a/src/components/MovieSearchForm.js
++++ b/src/components/MovieSearchForm.js
+@@ -1,24 +1,33 @@
+-import React, { useState } from "react";
++import React, { useMemo, useState } from "react";
+ import { Button, Container } from "@mui/material";
+ 
+ import MovieGenres from "./MovieGenres";
+ import { ORANGE_HEXA } from "../utils/colors";
+ import MoviesGridList from "./MoviesGridList";
+-import ApiKeyTestField from "./ApiKeyTestField";
+ import { SEARCH_MOVIE } from "../utils/constants";
+ import MovieYearDropdown from "./MovieYearDropdown";
+-import { fetchFilteredMovies } from "../services/moviesService";
++import { fetchFilteredMedia } from "../services/moviesService";
++import SelectwithOptions from "./SelectwithOptions";
++import { searchOptions } from "../constants/searchOptions";
+ 
+ const MovieSearchForm = () => {
+   const [genresType, setGenresType] = useState("");
+   const [selectedYear, setSelectedYear] = useState(new Date());
+-  const [apiKey, SetApiKey] = useState("");
+-  const [filterMovies, setFilterMovies] = useState([]);
++  const [selectedMediaType, setSelectedMediaType] = useState(searchOptions);
++  const [filterMedia, setFilterMedia] = useState([]);
+ 
+-  const handleSubmitForm = async (type, year, apiKey) => {
++  const isSearchDisabled = useMemo(
++    () => !genresType || !selectedYear || !selectedMediaType,
++    [genresType, selectedMediaType, selectedYear]
++  );
++
++  const handleSubmitForm = async () => {
++    const year = selectedYear.toString().split(" ")[3];
+     try {
+-      const { data } = await fetchFilteredMovies(apiKey, year, type);
+-      setFilterMovies(data.results);
++        selectedMediaType.map(async (media) => {
++          const { data } = await fetchFilteredMedia(media, year, genresType);
++          setFilterMedia([...filterMedia, ...data.results]);
++        });
+     } catch (e) {
+       console.log(e);
+     }
+@@ -28,7 +37,7 @@ const MovieSearchForm = () => {
+     return (
+       <Button
+         variant="outlined"
+-        disabled={!genresType || !selectedYear || !apiKey}
++        disabled={isSearchDisabled}
+         color="inherit"
+         size="large"
+         sx={{
+@@ -38,13 +47,7 @@ const MovieSearchForm = () => {
+           fontSize: "15px",
+           borderRadius: "20px",
+         }}
+-        onClick={() =>
+-          handleSubmitForm(
+-            genresType,
+-            selectedYear.toString().split(" ")[3],
+-            apiKey
+-          )
+-        }
++        onClick={handleSubmitForm}
+       >
+         {SEARCH_MOVIE}
+       </Button>
+@@ -62,18 +65,28 @@ const MovieSearchForm = () => {
+             justifyContent: "space-around",
+           }}
+         >
+-          <MovieGenres genresType={genresType} setGenresType={setGenresType} />
++          <MovieGenres 
++            genresType={genresType}
++            setGenresType={setGenresType}
++            setFilterMedia={() => setFilterMedia([])}
++          />
+           <MovieYearDropdown
+             selectedYear={selectedYear}
+             setSelectedYear={setSelectedYear}
++            setFilterMedia={() => setFilterMedia([])}
++          />
++          {/* <ApiKeyTestField SetApiKey={SetApiKey} /> */}
++          <SelectwithOptions
++            selected={selectedMediaType}
++            setSelected={setSelectedMediaType}
++            setFilterMedia={() => setFilterMedia([])}
+           />
+-          <ApiKeyTestField SetApiKey={SetApiKey} />
+         </Container>
+         <Container sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+           {formSubmitButton()}
+         </Container>
+       </form>
+-      {filterMovies ? <MoviesGridList moviesList={filterMovies} /> : null}
++      {filterMedia ? <MoviesGridList moviesList={filterMedia} /> : null}
+     </>
+   );
+ };
+diff --git a/src/components/MovieYearDropdown.js b/src/components/MovieYearDropdown.js
+index 238d83d..5796fd8 100644
+--- a/src/components/MovieYearDropdown.js
++++ b/src/components/MovieYearDropdown.js
+@@ -6,7 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+ 
+ import { ORANGE_HEXA, WIHITE_HEXA } from "../utils/colors";
+ 
+-const MovieYearDropdown = ({ setSelectedYear, selectedYear }) => {
++const MovieYearDropdown = ({ setSelectedYear, selectedYear, setFilterMedia }) => {
+   return (
+     <FormControl
+       sx={{
+@@ -33,7 +33,8 @@ const MovieYearDropdown = ({ setSelectedYear, selectedYear }) => {
+           views={["year"]}
+           label="Year"
+           value={selectedYear}
+-          onChange={(newValue) => {
++          onChange={(newValue) => {    
++            setFilterMedia();
+             setSelectedYear(newValue);
+           }}
+           renderInput={(params) => (
+diff --git a/src/components/SelectwithOptions.js b/src/components/SelectwithOptions.js
+index 2a3261c..73d9b57 100644
+--- a/src/components/SelectwithOptions.js
++++ b/src/components/SelectwithOptions.js
+@@ -1,4 +1,3 @@
+-import React, { useState } from "react";
+ import Checkbox from "@material-ui/core/Checkbox";
+ import InputLabel from "@material-ui/core/InputLabel";
+ import ListItemIcon from "@material-ui/core/ListItemIcon";
+@@ -6,19 +5,60 @@ import ListItemText from "@material-ui/core/ListItemText";
+ import MenuItem from "@material-ui/core/MenuItem";
+ import FormControl from "@material-ui/core/FormControl";
+ import Select from "@material-ui/core/Select";
++import { makeStyles } from "@material-ui/core/styles";
++import { searchOptions } from "../constants/searchOptions";
++
++const useStyles = makeStyles((theme) => ({
++  formControl: {
++    margin: theme.spacing(1),
++    width: 300
++  },
++  indeterminateColor: {
++    color: "#f50057"
++  },
++  selectAllText: {
++    fontWeight: 500
++  },
++  selectedAll: {
++    backgroundColor: "rgba(0, 0, 0, 0.08)",
++    "&:hover": {
++      backgroundColor: "rgba(0, 0, 0, 0.08)"
++    }
++  }
++}));
++
++const ITEM_HEIGHT = 48;
++const ITEM_PADDING_TOP = 8;
++const MenuProps = {
++  PaperProps: {
++    style: {
++      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
++      width: 250
++    }
++  },
++  getContentAnchorEl: null,
++  anchorOrigin: {
++    vertical: "bottom",
++    horizontal: "center"
++  },
++  transformOrigin: {
++    vertical: "top",
++    horizontal: "center"
++  },
++  variant: "menu"
++};
+ 
+-import { MenuProps, useStyles, options } from "./utils";
+ 
+-function SelectwithOptions() {
++function SelectwithOptions({ selected, setSelected, setFilterMedia}) {
+   const classes = useStyles();
+-  const [selected, setSelected] = useState([]);
+   const isAllSelected =
+-    options.length > 0 && selected.length === options.length;
++    searchOptions.length > 0 && selected.length === searchOptions.length;
+ 
+   const handleChange = (event) => {
++    setFilterMedia();
+     const value = event.target.value;
+     if (value[value.length - 1] === "all") {
+-      setSelected(selected.length === options.length ? [] : options);
++      setSelected(selected.length === searchOptions.length ? [] : searchOptions);
+       return;
+     }
+     setSelected(value);
+@@ -46,7 +86,7 @@ function SelectwithOptions() {
+               classes={{ indeterminate: classes.indeterminateColor }}
+               checked={isAllSelected}
+               indeterminate={
+-                selected.length > 0 && selected.length < options.length
++                selected.length > 0 && selected.length < searchOptions.length
+               }
+             />
+           </ListItemIcon>
+@@ -55,7 +95,7 @@ function SelectwithOptions() {
+             primary="Select All"
+           />
+         </MenuItem>
+-        {options.map((option) => (
++        {searchOptions.map((option) => (
+           <MenuItem key={option} value={option}>
+             <ListItemIcon>
+               <Checkbox checked={selected.indexOf(option) > -1} />
+diff --git a/src/constants/searchOptions.js b/src/constants/searchOptions.js
+new file mode 100644
+index 0000000..a1729e8
+--- /dev/null
++++ b/src/constants/searchOptions.js
+@@ -0,0 +1,4 @@
++export const searchOptions = [
++    "movie",
++    "tv",
++  ];
+\ No newline at end of file
+diff --git a/src/services/moviesService.js b/src/services/moviesService.js
+index 457c097..39d8a66 100644
+--- a/src/services/moviesService.js
++++ b/src/services/moviesService.js
+@@ -5,9 +5,9 @@ export const fetchTrendingMovies = () =>
+     `/trending/all/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}&language=en-US`
+   );
+ 
+-export const fetchFilteredMovies = (apiKey, year, type) =>
++export const fetchFilteredMedia = (mediaType, year, genre) =>
+   axios.get(
+-    `/discover/movie?api_key=${apiKey}&original_language=%22en%22&primary_release_date.gte=${year}-01-01&primary_release_date.lte=${year}-12-31&with_genres=${type}`
++    `/discover/${mediaType}?api_key=${process.env.REACT_APP_TMDB_API_KEY}&original_language=%22en%22&primary_release_date.gte=${year}-01-01&primary_release_date.lte=${year}-12-31&with_genres=${genre}`
+   );
+ 
+ export const fetchGenres = () =>

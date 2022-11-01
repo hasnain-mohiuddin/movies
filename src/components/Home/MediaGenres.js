@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 
-import { fetchGenres } from "../../services/moviesService";
-import { GENERES_DROP_DOWN_LABEL } from "../../constants/constants";
+import { fetchGenres } from "services/moviesService";
+import { GENERES_DROP_DOWN_LABEL } from "constants/constants";
 
-const MediaGenres = ({ genresType, setGenresType }) => {
+const MediaGenres = ({ genresType, onSetGenresType }) => {
   const [genresList, setGenreList] = useState([]);
 
   const getGenres = async () => {
     try {
       const { data } = await fetchGenres();
       setGenreList(data.genres);
-      setGenresType(data.genres[0].id);
+      onSetGenresType(data.genres[0].id);
     } catch (e) {
       console.log(e);
     }
   };
 
   const handleChange = (e) => {
-    setGenresType(e.target.value);
+    onSetGenresType(e.target.value);
   };
 
   useEffect(() => {

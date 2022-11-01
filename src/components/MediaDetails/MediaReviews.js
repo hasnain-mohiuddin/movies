@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 
-import { fetchMovieReviews } from "../../services/moviesService";
+import { fetchMovieReviews } from "services/moviesService";
 import MediaReviewCard from "./MediaReviewCard";
-import PaginationComponent from "../shared/PaginationComponent";
-import { NEVADA } from "../../constants/colors";
+import PaginationComponent from "components/shared/PaginationComponent";
+import { NEVADA } from "constants/colors";
 
 const MediaReviews = ({ isMobile }) => {
   const params = useParams();

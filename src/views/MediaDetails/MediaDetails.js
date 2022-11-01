@@ -1,8 +1,8 @@
 import { Divider, Container, useMediaQuery } from "@mui/material";
 
-import MediaInfo from "../../components/MediaDetails/MediaInfo";
-import MediaReviews from "../../components/MediaDetails/MediaReviews";
-import { BLACK, WHITE } from "../../constants/colors";
+import MediaInfo from "components/MediaDetails/MediaInfo";
+import MediaReviews from "components/MediaDetails/MediaReviews";
+import { BLACK, WHITE } from "constants/colors";
 
 const DetailsPage = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');

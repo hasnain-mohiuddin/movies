@@ -30,7 +30,7 @@ const PopularMovies = () => {
     <MoviesGridList
       title={POPULAR_MOVIES_TITLE}
       mediaCount={mediaCount}
-      handleChange={handleChange}
+      onHandleChange={handleChange}
       moviesList={popularMovies}
     />
   );

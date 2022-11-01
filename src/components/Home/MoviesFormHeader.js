@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography } from "@mui/material";
 
-import { BLACK } from "../../constants/colors";
-import { FORM_HEADER_TITLE } from "../../constants/constants";
+import { BLACK } from "constants/colors";
+import { FORM_HEADER_TITLE } from "constants/constants";
 
 const MoviesFormHeader = () => {
   return (

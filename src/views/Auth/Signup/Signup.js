@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 
 import { auth } from "../../../firebase";
-import urls from "../../../constants/urls";
-import Form from "../../../components/Auth/Form";
-import { validationSchema } from "../../../schema/Auth";
+import urls from "constants/urls";
+import Form from "components/Auth/Form";
+import { validationSchema } from "schema/Auth";
 import {
   createSessionId,
   setSessionId,
-} from "../../../services/sessionService";
+} from "services/sessionService";
 
 export default function Signup() {
   let navigate = useNavigate();

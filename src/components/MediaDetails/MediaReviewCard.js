@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 
-import { truncate } from "../../utils/helpers";
+import { truncate } from "utils/helpers";
 import UserAvatar from "./UserAvatar";
-import { GRAY9, NEVADA, WHITE } from "../../constants/colors";
+import { GRAY9, NEVADA, WHITE } from "constants/colors";
 
 const MediaReviewCard = ({ review, isMobile }) => {
   const [readMore, setReadMore] = useState(false);

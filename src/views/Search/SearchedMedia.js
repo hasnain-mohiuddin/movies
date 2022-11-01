@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import MoviesGridList from "components/Home/MoviesGridList";
+import MoviesGridList from "components/Home/MoviesGridList/MoviesGridList";
 import SearchFormSection from "components/Home/SearchFormSection";
 import quryString from "query-string";
 import { useEffect, useMemo, useState } from "react";

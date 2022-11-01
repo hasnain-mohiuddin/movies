@@ -3,7 +3,7 @@ import { Box, Container, Typography, Grid, useMediaQuery } from "@mui/material";
 
 import { GRAY9, NEVADA } from "constants/colors";
 import Pagination from "components/shared/PaginationComponent";
-import MovieCard from "./MovieCard/MovieCard";
+import MovieCard from "../MovieCard/MovieCard";
 
 const MoviesGridList = ({ moviesList, mediaCount, handleChange, title, mediaType }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');

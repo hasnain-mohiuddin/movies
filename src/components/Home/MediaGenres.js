@@ -4,7 +4,7 @@ import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 import { fetchGenres } from "../../services/moviesService";
 import { GENERES_DROP_DOWN_LABEL } from "../../constants/constants";
 
-const MediaGenres = ({ genresType, setGenresType, setFilterMedia }) => {
+const MediaGenres = ({ genresType, setGenresType }) => {
   const [genresList, setGenreList] = useState([]);
 
   const getGenres = async () => {
@@ -18,7 +18,6 @@ const MediaGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   };
 
   const handleChange = (e) => {
-    setFilterMedia();
     setGenresType(e.target.value);
   };
 

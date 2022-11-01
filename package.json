@@ -56,6 +56,11 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/!node_modules\\/*"
+    ]
+  },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
     "eslint": "^8.8.0",

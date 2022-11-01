@@ -4,9 +4,9 @@ import quryString from "query-string";
 
 import Loader from "components/shared/Loader";
 import { SEARCH_MOVIE } from "constants/constants";
-import MediaGridList from "components/Home/MediaGridList";
 import { fetchFilteredMedia } from "services/moviesService";
 import SearchFormSection from "components/Home/SearchFormSection";
+import MediaGridList from "components/Home/MediaGridList/MediaGridList";
 
 const SearchedMedia = () => {
   const location = useLocation();

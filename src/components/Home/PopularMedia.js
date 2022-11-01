@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
 import { fetchTrendingMovies } from "../../services/moviesService";
-import MediaGridList from "./MediaGridList";
+import MediaGridList from "./MediaGridList/MediaGridList";
 
 const PopularMedia = () => {
   const [popularMedia, setPopularMedia] = useState([]);

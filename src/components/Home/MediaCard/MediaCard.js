@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Card, CardMedia } from "@mui/material";
 
-import CardDetails from "components/Home/CardDetails";
+import CardDetails from "components/Home/CardDetails/CardDetails";
 import CardRatings from "components/shared/CardRatings";
 import { GET_CARD_IMAGE_LINK } from "utils/helpers";
 

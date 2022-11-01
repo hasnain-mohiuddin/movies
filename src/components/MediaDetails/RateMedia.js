@@ -8,7 +8,7 @@ import { GRAY9, NEVADA, WHITE } from "constants/colors";
 import UserContext from "context/userContext";
 import urls from "constants/urls";
 
-const RateMedia = () => {
+const RateMedia = ({ isMobile }) => {
   const params = useParams();
   const user = useContext(UserContext);
   const [rating, setRating] = useState(0);
@@ -36,6 +36,7 @@ const RateMedia = () => {
         display: "flex",
         background: GRAY9,
         p: 2,
+        flexDirection: `${ isMobile ? 'column' : 'row' }`
       }}
     >
       <Typography variant="h6" color={NEVADA} minWidth={200} flexGrow={1}>

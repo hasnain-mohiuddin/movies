@@ -8,7 +8,7 @@ import CardRatings from "components/shared/CardRatings";
 import { NEVADA, WHITE } from "constants/colors";
 import RateMedia from "./RateMedia";
 
-const MediaInfo = () => {
+const MediaInfo = ({ isMobile }) => {
   const params = useParams();
   const location = useLocation();
   const [media, setMedia] = useState({});
@@ -33,20 +33,22 @@ const MediaInfo = () => {
   };
 
   return (
-    <Container>
-      <Box sx={{ display: "flex", my: 10 }}>
+    <Container sx={{ maxWidth: `${isMobile ? '90%' : 'auto'}` }}> 
+      <Box sx={{ display: "flex", my: 10, flexDirection: `${isMobile ? 'column' : 'row'}` }}>
         <Box
           sx={{
-            minWidth: 350,
+            minWidth: isMobile ? 200 : 320,
             objectFit: "contain",
             mr: 10,
             border: `5px solid ${WHITE}`,
+            maxWidth: `${isMobile ? '100%' : 'auto'}`
           }}
         >
           <CardMedia
             component="img"
             alt="Movie Image"
             image={GET_CARD_IMAGE_LINK(media.backdrop_path)}
+            sx={{ maxWidth: `${isMobile ? '100%' : 'auto'}` }}
           />
         </Box>
         <Box>
@@ -97,9 +99,10 @@ const MediaInfo = () => {
               averageScore={media.vote_average}
               color={NEVADA}
               starColor={WHITE}
+              sx={{ maxWidth: `${isMobile ? '280px' : 'auto'}`, display: 'flex', flexDirection: `${isMobile ? 'column' : 'row'}` }}
             />
           </Box>
-          <RateMedia />
+          <RateMedia isMobile={isMobile} />
         </Box>
       </Box>
     </Container>

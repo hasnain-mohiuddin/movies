@@ -7,7 +7,7 @@ import MediaReviewCard from "./MediaReviewCard";
 import PaginationComponent from "components/shared/PaginationComponent";
 import { NEVADA } from "constants/colors";
 
-const MediaReviews = () => {
+const MediaReviews = ({ isMobile }) => {
   const params = useParams();
   const [reviews, setReview] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -38,12 +38,13 @@ const MediaReviews = () => {
       {reviews.length > 0 ? (
         <Container>
           {reviews.map((review) => (
-            <MediaReviewCard key={review.id} review={review} />
+            <MediaReviewCard key={review.id} review={review} isMobile={isMobile} />
           ))}
           {pageCount > 1 && (
             <PaginationComponent
               pageCount={pageCount}
               onChange={handleChange}
+              isMobile={isMobile}
             />
           )}
         </Container>

@@ -6,7 +6,7 @@ import CardDetails from "components/Home/CardDetails";
 import CardRatings from "components/shared/CardRatings";
 import { GET_CARD_IMAGE_LINK } from "utils/helpers";
 
-const MovieCard = ({ movie, mediaType }) => {
+const MovieCard = ({ movie, mediaType, isMobile }) => {
   const navigate = useNavigate();
 
   const navigateToMediaDetails = () => {
@@ -16,7 +16,7 @@ const MovieCard = ({ movie, mediaType }) => {
   return (
     <>
       <Card
-        sx={{ borderRadius: 4, cursor: "pointer" }}
+        sx={{ borderRadius: 4, cursor: "pointer", minWidth: `${isMobile ? '100%' : '25%'}`, minHeight: `${isMobile ? '100%' : '25%'}` }}
         onClick={navigateToMediaDetails}
       >
         <CardMedia
@@ -29,7 +29,7 @@ const MovieCard = ({ movie, mediaType }) => {
           releaseDate={movie.first_air_date || movie.release_date}
         />
         <Box sx={{ marginBottom: 1 }}>
-          <CardRatings averageScore={movie.vote_average} />
+          <CardRatings averageScore={movie.vote_average} isMobile={isMobile} />
         </Box>
       </Card>
     </>

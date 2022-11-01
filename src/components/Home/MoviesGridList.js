@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Container, Typography, Grid } from "@mui/material";
 
-import { GRAY9, NEVADA } from "../../constants/colors";
-import Pagination from "../shared/PaginationComponent";
+import { GRAY9, NEVADA } from "constants/colors";
+import Pagination from "components/shared/PaginationComponent";
 import MovieCard from "./MovieCard/MovieCard";
 
 const MoviesGridList = ({
   moviesList,
   mediaCount,
-  handleChange,
+  onHandleChange,
   title,
   mediaType,
 }) => {
@@ -39,7 +39,7 @@ const MoviesGridList = ({
             ))}
           </Grid>
           {mediaCount > 1 && (
-            <Pagination pageCount={mediaCount} onChange={handleChange} />
+            <Pagination pageCount={mediaCount} onChange={onHandleChange} />
           )}
         </Box>
       </Container>

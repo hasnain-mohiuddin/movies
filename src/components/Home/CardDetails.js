@@ -1,7 +1,7 @@
 import React from "react";
 import { CardContent, Typography } from "@mui/material";
 
-import { truncate } from "../../utils/helpers";
+import { truncate } from "utils/helpers";
 
 const CardDetails = ({ movieName, releaseDate }) => {
   return (

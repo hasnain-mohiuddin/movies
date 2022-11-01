@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 
-import { MediaTypes } from "../constants/mediaTypes";
-import { ORANGE_HEXA, WIHITE_HEXA } from "../constants/colors";
+import { MediaTypes } from "constants/mediaTypes";
+import { ORANGE_HEXA, WHITE } from "constants/colors";
 
 const MediaType = () => {
   const [mediaList, setMediaList] = useState(MediaTypes);
@@ -39,7 +39,7 @@ const MediaType = () => {
         label="Select Genres"
         onChange={handleChange}
         sx={{
-          backgroundColor: WIHITE_HEXA,
+          backgroundColor: WHITE,
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
             border: "none",
           },

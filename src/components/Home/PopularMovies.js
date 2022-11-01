@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import MoviesGridList from "./MoviesGridList";
-import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
-import { fetchTrendingMovies } from "../../services/moviesService";
+import { POPULAR_MOVIES_TITLE } from "constants/constants";
+import { fetchTrendingMovies } from "services/moviesService";
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -30,7 +30,7 @@ const PopularMovies = () => {
     <MoviesGridList
       title={POPULAR_MOVIES_TITLE}
       mediaCount={mediaCount}
-      handleChange={handleChange}
+      onHandleChange={handleChange}
       moviesList={popularMovies}
     />
   );

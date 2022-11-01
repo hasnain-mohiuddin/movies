@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
-import CardRatings from "../shared/CardRatings";
-import { rateMedia } from "../../services/moviesService";
-import { GRAY9, NEVADA, WHITE } from "../../constants/colors";
-import UserContext from "../../context/userContext";
-import urls from "../../constants/urls";
+import CardRatings from "components/shared/CardRatings";
+import { rateMedia } from "services/moviesService";
+import { GRAY9, NEVADA, WHITE } from "constants/colors";
+import UserContext from "context/userContext";
+import urls from "constants/urls";
 
 const RateMedia = () => {
   const params = useParams();
@@ -45,7 +45,7 @@ const RateMedia = () => {
         <CardRatings
           averageScore={rating}
           readOnly={false}
-          setRating={handleChange}
+          onRatingChange={handleChange}
           size="large"
           color={WHITE}
           starColor={WHITE}

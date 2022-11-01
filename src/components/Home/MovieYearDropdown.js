@@ -4,10 +4,10 @@ import { TextField, FormControl } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { ORANGE_HEXA, WHITE } from "../../constants/colors";
+import { ORANGE_HEXA, WHITE } from "constants/colors";
 
 const MovieYearDropdown = ({
-  setSelectedYear,
+  onSetSelectedYear,
   selectedYear,
 }) => {
   return (
@@ -24,7 +24,7 @@ const MovieYearDropdown = ({
           label="Year"
           value={selectedYear}
           onChange={(newValue) => {
-            setSelectedYear(newValue);
+            onSetSelectedYear(newValue);
           }}
           renderInput={(params) => (
             <TextField

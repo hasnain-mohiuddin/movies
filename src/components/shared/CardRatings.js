@@ -2,12 +2,12 @@ import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { Typography, Container, Rating } from "@mui/material";
 
-import { GET_RATING_SATRS, GET_RATING_SCORE } from "../../utils/helpers";
+import { GET_RATING_SATRS, GET_RATING_SCORE } from "utils/helpers";
 
 const CardRatings = ({
   averageScore,
   readOnly = true,
-  setRating = () => {},
+  onRatingChange = () => {},
   size = "small",
   color,
   starColor,
@@ -28,7 +28,7 @@ const CardRatings = ({
         precision={0.5}
         size={size}
         onChange={(event, newValue) => {
-          setRating(newValue);
+          onRatingChange(newValue);
         }}
         emptyIcon={
           <StarIcon

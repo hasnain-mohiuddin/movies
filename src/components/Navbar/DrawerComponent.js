@@ -13,9 +13,9 @@ import { Button } from "@mui/material";
 
 import { auth } from "../../firebase";
 import { Link } from "react-router-dom";
-import urls from "../../constants/urls";
-import { GRAY9, WHITE } from "../../constants/colors";
-import { removeSessionId } from "../../services/sessionService";
+import urls from "constants/urls";
+import { GRAY9, WHITE } from "constants/colors";
+import { removeSessionId } from "services/sessionService";
 
 const useStyles = makeStyles(() => ({
   link: {

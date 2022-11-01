@@ -2,8 +2,8 @@ import React from "react";
 import { Container, Typography } from "@mui/material";
 
 import MovieSearchForm from "./MovieSearchForm";
-import { FORM_HEADER_TITLE } from "../../constants/constants";
-import { BLACK } from "../../constants/colors";
+import { FORM_HEADER_TITLE } from "constants/constants";
+import { BLACK } from "constants/colors";
 
 const SearchFormSection = () => {
   return (

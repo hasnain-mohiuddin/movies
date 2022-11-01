@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import urls from "../constants/urls";
+import urls from "constants/urls";
 
-import UserContext from "../context/userContext";
+import UserContext from "context/userContext";
 
 const RequireAuth = () => {
   let location = useLocation();

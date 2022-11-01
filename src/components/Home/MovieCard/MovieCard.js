@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Card, CardMedia } from "@mui/material";
 
-import CardDetails from "../CardDetails";
-import CardRatings from "../../shared/CardRatings";
-import { GET_CARD_IMAGE_LINK } from "../../../utils/helpers";
+import CardDetails from "components/Home/CardDetails";
+import CardRatings from "components/shared/CardRatings";
+import { GET_CARD_IMAGE_LINK } from "utils/helpers";
 
 const MovieCard = ({ movie, mediaType }) => {
   const navigate = useNavigate();

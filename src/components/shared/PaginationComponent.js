@@ -9,6 +9,7 @@ const PaginationComponent = ({ pageCount, onChange }) => {
       size="large"
       sx={{ m: 4, button: { color: WHITE } }}
       onChange={onChange}
+      color="primary"
     />
   );
 };

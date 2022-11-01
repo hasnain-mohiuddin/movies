@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Typography } from "@mui/material";
 
 import MoviesGridList from "./MoviesGridList";
 import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
 import { fetchTrendingMovies } from "../../services/moviesService";
-import { GRAY9, WHITE } from "../../constants/colors";
-import Pagination from '../shared/PaginationComponent'
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -30,30 +27,12 @@ const PopularMovies = () => {
   }, []);
 
   return (
-    <Container
-      sx={{ backgroundColor: GRAY9, paddingBottom: 3 }}
-      maxWidth={false}
-    >
-      <Container>
-        <Typography
-          gutterBottom
-          variant="h4"
-          p={2}
-          fontSize={"2rem"}
-          sx={{
-            color: WHITE,
-          }}
-        >
-          {POPULAR_MOVIES_TITLE}
-        </Typography>
-        {popularMovies ? (
-          <Box display={"flex"} flexDirection="column" alignItems={"center"}>
-            <MoviesGridList moviesList={popularMovies} pageCount={mediaCount} />
-            <Pagination pageCount={mediaCount} onChange={handleChange} />
-          </Box>
-        ) : null}
-      </Container>
-    </Container>
+    <MoviesGridList
+      title={POPULAR_MOVIES_TITLE}
+      mediaCount={mediaCount}
+      handleChange={handleChange}
+      moviesList={popularMovies}
+    />
   );
 };
 

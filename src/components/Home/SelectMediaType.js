@@ -13,9 +13,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: 300,
   },
-  indeterminateColor: {
-    color: "#f50057",
-  },
   selectAllText: {
     fontWeight: 500,
   },
@@ -84,7 +81,6 @@ function SelectMediaType({ selected, setSelected, setFilterMedia }) {
         >
           <ListItemIcon>
             <Checkbox
-              classes={{ indeterminate: classes.indeterminateColor }}
               checked={isAllSelected}
               indeterminate={
                 selected.length > 0 && selected.length < searchOptions.length
@@ -99,7 +95,9 @@ function SelectMediaType({ selected, setSelected, setFilterMedia }) {
         {searchOptions.map((option) => (
           <MenuItem key={option} value={option}>
             <ListItemIcon>
-              <Checkbox checked={selected.indexOf(option) > -1} />
+              <Checkbox
+                checked={selected.indexOf(option) > -1}
+              />
             </ListItemIcon>
             <ListItemText primary={option} />
           </MenuItem>

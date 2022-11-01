@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
 
 import { fetchMovieReviews } from "../../services/moviesService";
-import MovieReviewCard from "./MovieReviewCard";
+import MediaReviewCard from "./MediaReviewCard";
 import PaginationComponent from "../shared/PaginationComponent";
+import { NEVADA } from "../../constants/colors";
 
-const MovieReviews = () => {
+const MediaReviews = () => {
   const params = useParams();
   const [reviews, setReview] = useState([]);
   const [pageCount, setPageCount] = useState(0);
@@ -31,13 +32,13 @@ const MovieReviews = () => {
 
   return (
     <Container sx={{ mx: 10, my: 5 }}>
-      <Typography variant="p" fontSize={25} fontWeight="bold">
+      <Typography variant="p" fontSize={25} fontWeight="bold" color={NEVADA}>
         Reviews ({reviews ? reviews.length : 0})
       </Typography>
       {reviews.length > 0 ? (
         <Container>
           {reviews.map((review) => (
-            <MovieReviewCard key={review.id} review={review} />
+            <MediaReviewCard key={review.id} review={review} />
           ))}
           {pageCount > 1 && (
             <PaginationComponent
@@ -47,7 +48,11 @@ const MovieReviews = () => {
           )}
         </Container>
       ) : (
-        <Typography variant="h4" sx={{ my: 5, textAlign: "center" }}>
+        <Typography
+          variant="h4"
+          sx={{ my: 5, textAlign: "center" }}
+          color={NEVADA}
+        >
           No Reviews Yet
         </Typography>
       )}
@@ -55,4 +60,4 @@ const MovieReviews = () => {
   );
 };
 
-export default MovieReviews;
+export default MediaReviews;

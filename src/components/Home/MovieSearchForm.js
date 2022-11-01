@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
-import { Box, Button, Container } from "@mui/material";
+import { Button, Container } from "@mui/material";
 
-import MovieGenres from "./MovieGenres";
+import MediaGenres from "./MediaGenres";
 import MoviesGridList from "./MoviesGridList";
 import { SEARCH_MOVIE } from "../../constants/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
@@ -9,8 +9,6 @@ import { fetchFilteredMedia } from "../../services/moviesService";
 import SelectMediaType from "./SelectMediaType";
 import { searchOptions } from "../../constants/searchOptions";
 import { BLACK, WIHITE_HEXA } from "../../constants/colors";
-import Pagination from '../shared/PaginationComponent'
-
 
 const MovieSearchForm = () => {
   const [genresType, setGenresType] = useState("");
@@ -24,21 +22,25 @@ const MovieSearchForm = () => {
     [genresType, selectedMediaType, selectedYear]
   );
 
-  const handleSubmitForm = async (pageNumber) => {
+  const handleSubmitForm = async ({ page = 1 }) => {
     const year = selectedYear.toString().split(" ")[3];
     try {
       let pagesCount = 0;
       selectedMediaType.map(async (media, idx) => {
-        const { data } = await fetchFilteredMedia(media, year, genresType, pageNumber);
+        const { data } = await fetchFilteredMedia(
+          media,
+          year,
+          genresType,
+          page
+        );
         setFilterMedia([...filterMedia, ...data.results]);
         pagesCount += data.total_pages;
-        if(idx - 1 === selectedMediaType) setMediaCount(pagesCount);
+        if (idx - 1 === selectedMediaType) setMediaCount(pagesCount);
       });
     } catch (e) {
       console.log(e);
     }
   };
-
 
   const handleChange = (event, value) => {
     handleSubmitForm(value);
@@ -74,7 +76,7 @@ const MovieSearchForm = () => {
             justifyContent: "space-around",
           }}
         >
-          <MovieGenres
+          <MediaGenres
             genresType={genresType}
             setGenresType={setGenresType}
             setFilterMedia={() => setFilterMedia([])}
@@ -94,12 +96,17 @@ const MovieSearchForm = () => {
           {formSubmitButton()}
         </Container>
       </form>
-      {filterMedia.length > 0 ? (
-        <Box display={"flex"} flexDirection="column" alignItems={"center"}>
-          <MoviesGridList moviesList={filterMedia} pageCount={mediaCount} />
-          {mediaCount > 1 && <Pagination pageCount={mediaCount} onChange={handleChange} />}
-        </Box>
-      ) : null}
+
+      {/* <Box display={"flex"} flexDirection="column" alignItems={"center"}> */}
+      <MoviesGridList
+        moviesList={filterMedia}
+        pageCount={mediaCount}
+        handleChange={handleChange}
+        title={SEARCH_MOVIE}
+      />
+      {/* {mediaCount > 1 && <Pagination pageCount={mediaCount} onChange={handleChange} />} */}
+      {/* </Box> */}
+      {/* ) : null} */}
     </>
   );
 };

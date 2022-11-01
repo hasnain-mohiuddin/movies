@@ -1,16 +1,13 @@
-// import { lazy } from "react";
+import { lazy } from "react";
 import { Route } from "react-router-dom";
 
-import Dashboard from "../views/Home/Dashboard";
-import DetailsPage from "../views/MediaDetails/DetailsPage";
 import urls from "../constants/urls";
-import Signin from "../views/Auth/Signin/Signin";
-import Signup from "../views/Auth/Signup/Signup";
 import RequireAuth from "./RequireAuth";
-// const Dashboard = lazy(() => import('../views/Home/Dashboard'));
-// const Signin = lazy(() => import('../views/Auth/Signin/Signin'));
-// const Signup = lazy(() => import('../views/Home/Dashboard'));
-// const DetailsPage = lazy(() => import('../views/Home/Dashboard'));
+
+const Dashboard = lazy(() => import("../views/Home/Dashboard"));
+const Signin = lazy(() => import("../views/Auth/Signin/Signin"));
+const Signup = lazy(() => import("../views/Auth/Signup/Signup"));
+const DetailsPage = lazy(() => import("../views/MediaDetails/MediaDetails"));
 
 const appRoutes = [
   {

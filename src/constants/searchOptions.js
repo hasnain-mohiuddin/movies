@@ -1,1 +1,1 @@
-export const searchOptions = ["movie", "tv"];
+export const searchOptions = ["tv","movie"];

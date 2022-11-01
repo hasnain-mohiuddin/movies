@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes } from "react-router-dom";
 
 import { auth } from "./firebase.js";
@@ -26,7 +26,9 @@ function App() {
     <UserContext.Provider value={user}>
       <BrowserRouter>
         <Navbar />
-        <Routes>{switchRoutes()}</Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>{switchRoutes()}</Routes>
+        </Suspense>
       </BrowserRouter>
     </UserContext.Provider>
   );

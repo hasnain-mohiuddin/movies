@@ -1,14 +1,20 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 import MovieSearchForm from "./MovieSearchForm";
+import { FORM_HEADER_TITLE } from "../../constants/constants";
 import { BLACK } from "../../constants/colors";
-import MoviesFormHeader from "./MoviesFormHeader";
 
 const SearchFormSection = () => {
   return (
-    <Container maxWidth={false} sx={{ backgroundColor: BLACK, pb: 6 }}>
-      <MoviesFormHeader />
+    <Container maxWidth={false} sx={{ pb: 6 }}>
+      <Typography
+        variant="h4"
+        p={2}
+        color={BLACK}
+      >
+        {FORM_HEADER_TITLE}
+      </Typography>
       <MovieSearchForm />
     </Container>
   );

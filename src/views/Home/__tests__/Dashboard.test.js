@@ -19,6 +19,9 @@ describe('loads Dashboard view', () => {
 
   it('loads the last week popular movies component', async () => {
     expect(screen.queryAllByText(`Last Week's Popular Movies`).length).toBe(0);
-    expect(screen.queryAllByText('No Results Found').length).toBeGreaterThan(0);
+  });
+
+  it('should not render last week popular movie', async () => {
+    expect(screen.queryAllByText('No Results Found').length).not.toBeGreaterThan(0);
   });
 });

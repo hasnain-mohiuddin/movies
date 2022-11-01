@@ -1,15 +1,15 @@
 /* eslint-disable no-undef */
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import MoviesGridList from "../MoviesGridList";
 import { Movies } from "components/Store/Movies";
 import { POPULAR_MOVIES_TITLE } from "constants/constants";
+import MediaGridList from "../MediaGridList";
 
 describe("loads the component", () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
-        <MoviesGridList 
+        <MediaGridList 
 					handleChange={() => {}}
 					mediaCount={Movies.length}
 					mediaType={'movie'}

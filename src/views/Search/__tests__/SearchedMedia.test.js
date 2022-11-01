@@ -17,7 +17,7 @@ describe('load SearchedMedia view', () => {
       expect(screen.queryAllByText('Search').length).toBeGreaterThan(0);
   });
 
-  it('loads the MoviesGridList component with no results', async () => {
-    expect(screen.queryAllByText('No Results Found').length).toBeGreaterThan(0);
+  it('should not load MediaGridList component with no results', async () => {
+    expect(screen.queryAllByText('No Results Found').length).not.toBeGreaterThan(0);
   });
 });

@@ -4,7 +4,7 @@ import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 import { MEDIA_TYPE } from "constants/constants";
 import { searchOptions } from "constants/searchOptions";
 
-const MediaGenres = ({ selected, onSetSelected }) => {
+const SelectMediaType = ({ selected, onSetSelected }) => {
   const handleChange = (e) => {
     onSetSelected(e.target.value);
   };
@@ -27,4 +27,4 @@ const MediaGenres = ({ selected, onSetSelected }) => {
   );
 };
 
-export default MediaGenres;
+export default SelectMediaType;

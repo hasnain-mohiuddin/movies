@@ -2,13 +2,13 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Movie } from "components/Store/Movie";
-import MovieCard from "../MovieCard";
+import MediaCard from "../MediaCard";
 
 describe("loads the component", () => {
   beforeAll(() => {
     render(
       <MemoryRouter>
-        <MovieCard movie={Movie} />
+        <MediaCard movie={Movie} />
       </MemoryRouter>
     );
   });

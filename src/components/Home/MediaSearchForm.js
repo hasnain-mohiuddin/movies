@@ -4,12 +4,12 @@ import { Button, Container } from "@mui/material";
 
 import MediaGenres from "./MediaGenres";
 import SelectMediaType from "./SelectMediaType";
-import MovieYearDropdown from "./MovieYearDropdown";
+import MediaYearDropdown from "./MediaYearDropdown";
 import { SEARCH_MOVIE } from "constants/constants";
 import { BLACK, WHITE } from "constants/colors";
 import { searchOptions } from "constants/searchOptions";
 
-const MovieSearchForm = () => {
+const MediaSearchForm = () => {
   const navigate= useNavigate();
   const [genresType, setGenresType] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date());
@@ -68,7 +68,7 @@ const MovieSearchForm = () => {
             genresType={genresType}
             onSetGenresType={handleGenreChange}
           />
-          <MovieYearDropdown
+          <MediaYearDropdown
             selectedYear={selectedYear}
             onSetSelectedYear={handleSelectedYear}
           />
@@ -85,4 +85,4 @@ const MovieSearchForm = () => {
   );
 };
 
-export default MovieSearchForm;
+export default MediaSearchForm;

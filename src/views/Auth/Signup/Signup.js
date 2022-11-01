@@ -9,6 +9,7 @@ import {
   createSessionId,
   setSessionId,
 } from "services/sessionService";
+import { getErrorMessage } from "utils/errorMessages";
 
 export default function Signup() {
   let navigate = useNavigate();
@@ -28,8 +29,8 @@ export default function Signup() {
 
           navigate("/", { replace: true });
         })
-        .catch(() => {
-          setErrors({ email: "Email already exists" });
+        .catch((e) => {
+          setErrors({ email: getErrorMessage[e.code] });
         });
     },
   });

@@ -6,7 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { ORANGE_HEXA, WHITE } from "constants/colors";
 
-const MovieYearDropdown = ({
+const MediaYearDropdown = ({
   onSetSelectedYear,
   selectedYear,
 }) => {
@@ -44,4 +44,4 @@ const MovieYearDropdown = ({
   );
 };
 
-export default MovieYearDropdown;
+export default MediaYearDropdown;

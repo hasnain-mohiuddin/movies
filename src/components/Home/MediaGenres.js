@@ -30,7 +30,11 @@ const MediaGenres = ({ genresType, setGenresType, setFilterMedia }) => {
   return (
     <FormControl sx={{ width: "25%", minWidth: "200px", m: 1 }}>
       <InputLabel>{GENERES_DROP_DOWN_LABEL}</InputLabel>
-      <Select value={genresType} onChange={handleChange} label={GENERES_DROP_DOWN_LABEL}>
+      <Select
+        value={genresType}
+        onChange={handleChange}
+        label={GENERES_DROP_DOWN_LABEL}
+      >
         {genresList.map((item) => (
           <MenuItem key={item.id} value={item.id}>
             {item.name}

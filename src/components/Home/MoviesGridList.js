@@ -5,7 +5,7 @@ import { GRAY9, NEVADA } from "../../constants/colors";
 import Pagination from "../shared/PaginationComponent";
 import MovieCard from "./MovieCard/MovieCard";
 
-const MoviesGridList = ({ moviesList, mediaCount, handleChange, title }) => {
+const MoviesGridList = ({ moviesList, mediaCount, handleChange, title, mediaType }) => {
   return moviesList.length > 0 ? (
     <Container
       sx={{ backgroundColor: GRAY9, paddingBottom: 3 }}
@@ -28,7 +28,7 @@ const MoviesGridList = ({ moviesList, mediaCount, handleChange, title }) => {
             <Grid container direction="row" spacing={4}>
               {moviesList.map((movie) => (
                 <Grid key={movie.id} item xs={3}>
-                  <MovieCard movie={movie} />
+                  <MovieCard movie={movie} mediaType={mediaType} />
                 </Grid>
               ))}
             </Grid>

@@ -13,7 +13,9 @@ import { BLACK, WIHITE_HEXA } from "../../constants/colors";
 const MovieSearchForm = () => {
   const [genresType, setGenresType] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date());
-  const [selectedMediaType, setSelectedMediaType] = useState(searchOptions);
+  const [selectedMediaType, setSelectedMediaType] = useState(
+    searchOptions[0].value
+  );
   const [filterMedia, setFilterMedia] = useState([]);
   const [mediaCount, setMediaCount] = useState(0);
 
@@ -25,18 +27,26 @@ const MovieSearchForm = () => {
   const handleSubmitForm = async ({ page = 1 }) => {
     const year = selectedYear.toString().split(" ")[3];
     try {
-      let pagesCount = 0;
-      selectedMediaType.map(async (media, idx) => {
-        const { data } = await fetchFilteredMedia(
-          media,
-          year,
-          genresType,
-          page
-        );
-        setFilterMedia([...filterMedia, ...data.results]);
-        pagesCount += data.total_pages;
-        if (idx - 1 === selectedMediaType) setMediaCount(pagesCount);
-      });
+      const { data } = await fetchFilteredMedia(
+        selectedMediaType,
+        year,
+        genresType,
+        page
+      );
+      setFilterMedia([...data.results]);
+      setMediaCount(data.total_pages);
+      // let pagesCount = 0;
+      // selectedMediaType.map(async (media, idx) => {
+      //   const { data } = await fetchFilteredMedia(
+      //     media,
+      //     year,
+      //     genresType,
+      //     page
+      //   );
+      //   setFilterMedia([...filterMedia, ...data.results]);
+      //   pagesCount += data.total_pages;
+      //   if (idx - 1 === selectedMediaType) setMediaCount(pagesCount);
+      // });
     } catch (e) {
       console.log(e);
     }
@@ -103,6 +113,7 @@ const MovieSearchForm = () => {
         pageCount={mediaCount}
         handleChange={handleChange}
         title={SEARCH_MOVIE}
+        mediaType={selectedMediaType}
       />
       {/* {mediaCount > 1 && <Pagination pageCount={mediaCount} onChange={handleChange} />} */}
       {/* </Box> */}

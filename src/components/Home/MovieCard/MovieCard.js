@@ -6,11 +6,11 @@ import CardDetails from "../CardDetails";
 import CardRatings from "../../shared/CardRatings";
 import { GET_CARD_IMAGE_LINK } from "../../../utils/helpers";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, mediaType }) => {
   const navigate = useNavigate();
 
   const navigateToMediaDetails = () => {
-    navigate(`/${movie.media_type}/${movie.id}`);
+    navigate(`/${movie.media_type || mediaType}/${movie.id}`);
   };
 
   return (

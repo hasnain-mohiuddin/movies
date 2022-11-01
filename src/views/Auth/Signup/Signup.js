@@ -20,7 +20,7 @@ export default function Signup() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { setErrors }) => {
+    onSubmit: (values, { setErrors, setSubmitting }) => {
       auth
         .createUserWithEmailAndPassword(values.email, values.password)
         .then(async () => {
@@ -31,6 +31,7 @@ export default function Signup() {
         })
         .catch((e) => {
           setErrors({ email: getErrorMessage[e.code] });
+          setSubmitting(false);
         });
     },
   });

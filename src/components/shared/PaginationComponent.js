@@ -2,7 +2,7 @@ import { Pagination } from "@mui/material";
 
 import { WHITE } from "constants/colors";
 
-const PaginationComponent = ({ pageCount, onChange, isMobile }) => {
+const PaginationComponent = ({ pageCount, onChange, isMobile, page }) => {
   return (
     <Pagination
       count={pageCount}
@@ -10,6 +10,7 @@ const PaginationComponent = ({ pageCount, onChange, isMobile }) => {
       sx={{ m: isMobile ? 2 : 4, button: { color: WHITE } }}
       onChange={onChange}
       color="primary"
+      page={page}
     />
   );
 };

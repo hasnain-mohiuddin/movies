@@ -6,7 +6,7 @@ import CardDetails from "components/Home/CardDetails";
 import CardRatings from "components/shared/CardRatings";
 import { GET_CARD_IMAGE_LINK } from "utils/helpers";
 
-const MovieCard = ({ movie, mediaType, isMobile }) => {
+const MediaCard = ({ movie, mediaType, isMobile }) => {
   const navigate = useNavigate();
 
   const navigateToMediaDetails = () => {
@@ -36,4 +36,4 @@ const MovieCard = ({ movie, mediaType, isMobile }) => {
   );
 };
 
-export default MovieCard;
+export default MediaCard;

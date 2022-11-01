@@ -5,7 +5,7 @@ import { truncate } from "../../utils/helpers";
 import UserAvatar from "./UserAvatar";
 import { GRAY9, NEVADA, WHITE } from "../../constants/colors";
 
-const MediaReviewCard = ({ review }) => {
+const MediaReviewCard = ({ review, isMobile }) => {
   const [readMore, setReadMore] = useState(false);
 
   const toggleReadMore = () => setReadMore(!readMore);
@@ -18,9 +18,10 @@ const MediaReviewCard = ({ review }) => {
         background: GRAY9,
         my: 5,
         borderRadius: 4,
+        maxWidth: `${ isMobile ? '100%' : 'auto' }`
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
+      <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2, flexDirection: `${ isMobile ? 'column' : 'row' }` }}>
         <UserAvatar
           avatar={review.author_details.avatar_path}
           author={review.author}
@@ -47,7 +48,7 @@ const MediaReviewCard = ({ review }) => {
           </Typography>
         </Box>
       </Box>
-      <Typography color={NEVADA}>
+      <Typography color={NEVADA} sx={{ wordBreak: 'break-all' }} >
         {readMore
           ? truncate(review.content, -1)
           : truncate(review.content, 250)}{" "}

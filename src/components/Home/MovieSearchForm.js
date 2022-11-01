@@ -106,8 +106,6 @@ const MovieSearchForm = () => {
           {formSubmitButton()}
         </Container>
       </form>
-
-      {/* <Box display={"flex"} flexDirection="column" alignItems={"center"}> */}
       <MoviesGridList
         moviesList={filterMedia}
         pageCount={mediaCount}
@@ -115,9 +113,6 @@ const MovieSearchForm = () => {
         title={SEARCH_MOVIE}
         mediaType={selectedMediaType}
       />
-      {/* {mediaCount > 1 && <Pagination pageCount={mediaCount} onChange={handleChange} />} */}
-      {/* </Box> */}
-      {/* ) : null} */}
     </>
   );
 };

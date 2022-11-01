@@ -5,6 +5,7 @@ import { auth } from "./firebase.js";
 import Navbar from "./components/Navbar/Navbar";
 import UserContext from "./context/userContext.js";
 import { switchRoutes } from "./routes/appRoutes.js";
+import Loader from "./components/shared/Loader.js";
 
 function App() {
   const [user, setUser] = useState({});
@@ -26,7 +27,7 @@ function App() {
     <UserContext.Provider value={user}>
       <BrowserRouter>
         <Navbar />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Routes>{switchRoutes()}</Routes>
         </Suspense>
       </BrowserRouter>

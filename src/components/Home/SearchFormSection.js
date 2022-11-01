@@ -12,6 +12,7 @@ const SearchFormSection = () => {
         variant="h4"
         p={2}
         color={BLACK}
+        textAlign='center'
       >
         {FORM_HEADER_TITLE}
       </Typography>

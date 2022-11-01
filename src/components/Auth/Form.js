@@ -63,6 +63,7 @@ export default function Form({ title, url, formik, changeLink }) {
             type="submit"
             fullWidth
             variant="contained"
+            disabled = {((!(formik.isValid)) || formik.isSubmitting)}
             sx={{ mt: 3, mb: 2 }}
           >
             {title}

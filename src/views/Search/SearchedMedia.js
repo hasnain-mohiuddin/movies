@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import MoviesGridList from "./MoviesGridList";
-import SearchFormSection from "./SearchFormSection";
+import MoviesGridList from "../../components/Home/MoviesGridList";
+import SearchFormSection from "../../components/Home/SearchFormSection";
 import quryString from "query-string";
 import { useEffect, useMemo, useState } from "react";
 import { fetchFilteredMedia } from "../../services/moviesService";
@@ -12,7 +12,6 @@ const SearchedMedia = () => {
   const [mediaCount, setMediaCount] = useState(0);
 
   const parsed = useMemo(() => {
-    console.log('in here')
     return quryString.parse(location.search);
   }, [location.search])
 
@@ -41,7 +40,7 @@ const SearchedMedia = () => {
       <SearchFormSection />
       <MoviesGridList
         moviesList={filterMedia}
-        pageCount={mediaCount}
+        mediaCount={mediaCount}
         handleChange={handleChange}
         title={SEARCH_MOVIE}
         mediaType={parsed.media}

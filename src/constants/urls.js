@@ -4,6 +4,7 @@ const urls = {
   signup: "/signup",
   tvDetails: "/tv/:id",
   movieDetails: "/movie/:id",
+  search: '/search'
 };
 
 export default urls;

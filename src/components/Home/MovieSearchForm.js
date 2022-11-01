@@ -1,40 +1,46 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Container } from "@mui/material";
 
 import MediaGenres from "./MediaGenres";
-import MoviesGridList from "./MoviesGridList";
+// import MoviesGridList from "./MoviesGridList";
 import { SEARCH_MOVIE } from "../../constants/constants";
 import MovieYearDropdown from "./MovieYearDropdown";
-import { fetchFilteredMedia } from "../../services/moviesService";
+// import { fetchFilteredMedia } from "../../services/moviesService";
 import SelectMediaType from "./SelectMediaType";
 import { searchOptions } from "../../constants/searchOptions";
 import { BLACK, WIHITE_HEXA } from "../../constants/colors";
 
 const MovieSearchForm = () => {
+  const navigate= useNavigate();
   const [genresType, setGenresType] = useState("");
   const [selectedYear, setSelectedYear] = useState(new Date());
   const [selectedMediaType, setSelectedMediaType] = useState(
     searchOptions[0].value
   );
-  const [filterMedia, setFilterMedia] = useState([]);
-  const [mediaCount, setMediaCount] = useState(0);
+  // const [filterMedia, setFilterMedia] = useState([]);
+  // const [mediaCount, setMediaCount] = useState(0);
 
   const isSearchDisabled = useMemo(
     () => !genresType || !selectedYear || !selectedMediaType,
     [genresType, selectedMediaType, selectedYear]
   );
 
-  const handleSubmitForm = async ({ page = 1 }) => {
+  const handleSubmitForm = async () => {
     const year = selectedYear.toString().split(" ")[3];
-    try {
-      const { data } = await fetchFilteredMedia(
-        selectedMediaType,
-        year,
-        genresType,
-        page
-      );
-      setFilterMedia([...data.results]);
-      setMediaCount(data.total_pages);
+    navigate({
+      pathname: '/search',
+      search: `?genre=${genresType}&year=${year}&media=${selectedMediaType}`
+    })
+    // try {
+      // const { data } = await fetchFilteredMedia(
+      //   selectedMediaType,
+      //   year,
+      //   genresType,
+      //   page
+      // );
+      // setFilterMedia([...data.results]);
+      // setMediaCount(data.total_pages);
       // let pagesCount = 0;
       // selectedMediaType.map(async (media, idx) => {
       //   const { data } = await fetchFilteredMedia(
@@ -47,14 +53,14 @@ const MovieSearchForm = () => {
       //   pagesCount += data.total_pages;
       //   if (idx - 1 === selectedMediaType) setMediaCount(pagesCount);
       // });
-    } catch (e) {
-      console.log(e);
-    }
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
-  const handleChange = (event, value) => {
-    handleSubmitForm(value);
-  };
+  // const handleChange = (event, value) => {
+  //   handleSubmitForm(value);
+  // };
 
   const formSubmitButton = () => {
     return (
@@ -89,30 +95,30 @@ const MovieSearchForm = () => {
           <MediaGenres
             genresType={genresType}
             setGenresType={setGenresType}
-            setFilterMedia={() => setFilterMedia([])}
+            // setFilterMedia={() => setFilterMedia([])}
           />
           <MovieYearDropdown
             selectedYear={selectedYear}
             setSelectedYear={setSelectedYear}
-            setFilterMedia={() => setFilterMedia([])}
+            // setFilterMedia={() => setFilterMedia([])}
           />
           <SelectMediaType
             selected={selectedMediaType}
             setSelected={setSelectedMediaType}
-            setFilterMedia={() => setFilterMedia([])}
+            // setFilterMedia={() => setFilterMedia([])}
           />
         </Container>
         <Container sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
           {formSubmitButton()}
         </Container>
       </form>
-      <MoviesGridList
+      {/* <MoviesGridList
         moviesList={filterMedia}
         pageCount={mediaCount}
         handleChange={handleChange}
         title={SEARCH_MOVIE}
         mediaType={selectedMediaType}
-      />
+      /> */}
     </>
   );
 };

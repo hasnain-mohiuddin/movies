@@ -20,7 +20,7 @@ export default function SignIn() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values, { setErrors }) => {
+    onSubmit: (values, { setErrors , setSubmitting}) => {
       auth
         .signInWithEmailAndPassword(values.email, values.password)
         .then(async () => {
@@ -31,6 +31,7 @@ export default function SignIn() {
         })
         .catch((e) => {
           setErrors({ email: getErrorMessage[e.code] });
+          setSubmitting(false);
         });
     },
   });

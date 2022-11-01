@@ -1,3 +1,4 @@
+import Loader from "components/shared/Loader";
 import React, { useEffect, useState } from "react";
 
 import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
@@ -7,10 +8,14 @@ import MoviesGridList from "./MoviesGridList";
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [mediaCount, setMediaCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
 
   const fetchTrending = async (pageNumber) => {
+    setLoading(true);
     try {
       const { data } = await fetchTrendingMovies(pageNumber);
+      setLoading(false);
       setMediaCount(data.total_pages);
       setPopularMovies(data.results);
     } catch (e) {
@@ -19,6 +24,7 @@ const PopularMovies = () => {
   };
 
   const handleChange = (event, value) => {
+    setPage(value);
     fetchTrending(value);
   };
 
@@ -27,12 +33,18 @@ const PopularMovies = () => {
   }, []);
 
   return (
-    <MoviesGridList
-      title={POPULAR_MOVIES_TITLE}
-      mediaCount={mediaCount}
-      onHandleChange={handleChange}
-      moviesList={popularMovies}
-    />
+    <>
+      {!loading && (
+        <MoviesGridList
+          title={POPULAR_MOVIES_TITLE}
+          mediaCount={mediaCount}
+          onHandleChange={handleChange}
+          moviesList={popularMovies}
+          page={page}
+        />
+      )}
+      {loading && <Loader />}
+    </>
   );
 };
 

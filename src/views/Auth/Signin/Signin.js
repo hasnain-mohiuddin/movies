@@ -9,6 +9,7 @@ import {
   createSessionId,
   setSessionId,
 } from "services/sessionService";
+import { getErrorMessage } from "utils/errorMessages";
 
 export default function SignIn() {
   let navigate = useNavigate();
@@ -28,8 +29,8 @@ export default function SignIn() {
 
           navigate("/", { replace: true });
         })
-        .catch(() => {
-          setErrors({ email: "Invalid Email or Password" });
+        .catch((e) => {
+          setErrors({ email: getErrorMessage[e.code] });
         });
     },
   });

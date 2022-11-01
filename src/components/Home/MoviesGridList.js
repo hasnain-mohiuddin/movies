@@ -5,13 +5,13 @@ import { GRAY9, NEVADA } from "constants/colors";
 import Pagination from "components/shared/PaginationComponent";
 import MovieCard from "./MovieCard/MovieCard";
 
-const MoviesGridList = ({ moviesList, mediaCount, handleChange, title, mediaType }) => {
+const MoviesGridList = ({ moviesList, mediaCount, onHandleChange, title, mediaType, page }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   return moviesList.length > 0 ? (
     <Container
       sx={{ backgroundColor: GRAY9, paddingBottom: 3 }}
-      maxWidth={isMobile ? 'md' : 'xl'}
+      maxWidth={isMobile ? 'md' : '100%'}
     >
       <Container>
         <Typography
@@ -34,7 +34,7 @@ const MoviesGridList = ({ moviesList, mediaCount, handleChange, title, mediaType
                 </Grid>
               ))}
             </Grid>
-            {mediaCount > 1 && <Pagination pageCount={mediaCount} onChange={handleChange} />}
+            {mediaCount > 1 && <Pagination page={page} pageCount={mediaCount} onChange={onHandleChange} />}
           </Box>
       </Container>
     </Container>

@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { render, screen } from "@testing-library/react";
-import MovieCard from "./MovieCard";
+import MediaCard from "./MediaCard";
 import { MemoryRouter } from "react-router-dom";
 
 const movie = {
@@ -26,7 +26,7 @@ describe("loads the component", () => {
   beforeAll(() => {
     render(
       <MemoryRouter>
-        <MovieCard movie={movie} />
+        <MediaCard movie={movie} />
       </MemoryRouter>
     );
   });

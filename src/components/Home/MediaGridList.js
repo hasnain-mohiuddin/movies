@@ -3,9 +3,9 @@ import { Box, Container, Typography, Grid, useMediaQuery } from "@mui/material";
 
 import { GRAY9, NEVADA } from "constants/colors";
 import Pagination from "components/shared/PaginationComponent";
-import MovieCard from "./MovieCard/MovieCard";
+import MediaCard from "./MediaCard/MediaCard";
 
-const MoviesGridList = ({ moviesList, mediaCount, onHandleChange, title, mediaType, page }) => {
+const MediaGridList = ({ moviesList, mediaCount, onHandleChange, title, mediaType, page }) => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   return moviesList.length > 0 ? (
@@ -30,7 +30,7 @@ const MoviesGridList = ({ moviesList, mediaCount, onHandleChange, title, mediaTy
             <Grid container direction="row" spacing={isMobile ? 2 : 4}>
               {moviesList.map((movie) => (
                 <Grid key={movie.id} item xs={isMobile ? 6 : 3}>
-                  <MovieCard movie={movie} mediaType={mediaType} isMobile={isMobile} />
+                  <MediaCard movie={movie} mediaType={mediaType} isMobile={isMobile} />
                 </Grid>
               ))}
             </Grid>
@@ -45,4 +45,4 @@ const MoviesGridList = ({ moviesList, mediaCount, onHandleChange, title, mediaTy
   );
 };
 
-export default MoviesGridList;
+export default MediaGridList;

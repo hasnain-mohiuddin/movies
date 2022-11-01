@@ -4,7 +4,7 @@ import quryString from "query-string";
 
 import Loader from "components/shared/Loader";
 import { SEARCH_MOVIE } from "constants/constants";
-import MoviesGridList from "components/Home/MoviesGridList";
+import MediaGridList from "components/Home/MediaGridList";
 import { fetchFilteredMedia } from "services/moviesService";
 import SearchFormSection from "components/Home/SearchFormSection";
 
@@ -47,7 +47,7 @@ const SearchedMedia = () => {
       <SearchFormSection />
       {loading && <Loader />}
       {!loading && (
-        <MoviesGridList
+        <MediaGridList
           moviesList={filterMedia}
           mediaCount={mediaCount}
           onHandleChange={handleChange}

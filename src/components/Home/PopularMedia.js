@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 
 import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
 import { fetchTrendingMovies } from "../../services/moviesService";
-import MoviesGridList from "./MoviesGridList";
+import MediaGridList from "./MediaGridList";
 
-const PopularMovies = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+const PopularMedia = () => {
+  const [popularMedia, setPopularMedia] = useState([]);
   const [mediaCount, setMediaCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -17,7 +17,7 @@ const PopularMovies = () => {
       const { data } = await fetchTrendingMovies(pageNumber);
       setLoading(false);
       setMediaCount(data.total_pages);
-      setPopularMovies(data.results);
+      setPopularMedia(data.results);
     } catch (e) {
       console.log(e);
     }
@@ -35,11 +35,11 @@ const PopularMovies = () => {
   return (
     <>
       {!loading && (
-        <MoviesGridList
+        <MediaGridList
           title={POPULAR_MOVIES_TITLE}
           mediaCount={mediaCount}
           onHandleChange={handleChange}
-          moviesList={popularMovies}
+          moviesList={popularMedia}
           page={page}
         />
       )}
@@ -48,4 +48,4 @@ const PopularMovies = () => {
   );
 };
 
-export default PopularMovies;
+export default PopularMedia;

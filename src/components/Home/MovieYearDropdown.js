@@ -9,7 +9,6 @@ import { ORANGE_HEXA, WHITE } from "../../constants/colors";
 const MovieYearDropdown = ({
   setSelectedYear,
   selectedYear,
-  setFilterMedia,
 }) => {
   return (
     <FormControl
@@ -25,7 +24,6 @@ const MovieYearDropdown = ({
           label="Year"
           value={selectedYear}
           onChange={(newValue) => {
-            setFilterMedia();
             setSelectedYear(newValue);
           }}
           renderInput={(params) => (

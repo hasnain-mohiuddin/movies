@@ -44,6 +44,7 @@ const MediaReviews = ({ isMobile }) => {
             <PaginationComponent
               pageCount={pageCount}
               onChange={handleChange}
+              isMobile={isMobile}
             />
           )}
         </Container>

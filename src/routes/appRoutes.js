@@ -8,6 +8,7 @@ const Dashboard = lazy(() => import("../views/Home/Dashboard"));
 const Signin = lazy(() => import("../views/Auth/Signin/Signin"));
 const Signup = lazy(() => import("../views/Auth/Signup/Signup"));
 const DetailsPage = lazy(() => import("../views/MediaDetails/MediaDetails"));
+const Search = lazy(() => import("../views/Search/SearchedMedia"));
 
 const appRoutes = [
   {
@@ -29,6 +30,10 @@ const appRoutes = [
   {
     path: urls.movieDetails,
     component: <DetailsPage />,
+  },
+  {
+    path: urls.search,
+    component: <Search />,
   },
 ];
 

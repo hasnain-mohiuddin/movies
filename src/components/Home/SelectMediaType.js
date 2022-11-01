@@ -115,9 +115,8 @@ import { InputLabel, FormControl, Select, MenuItem } from "@mui/material";
 import { MEDIA_TYPE } from "../../constants/constants";
 import { searchOptions } from "../../constants/searchOptions";
 
-const MediaGenres = ({ selected, setSelected, setFilterMedia }) => {
+const MediaGenres = ({ selected, setSelected }) => {
   const handleChange = (e) => {
-    setFilterMedia();
     setSelected(e.target.value);
   };
 

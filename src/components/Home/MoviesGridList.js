@@ -38,7 +38,11 @@ const MoviesGridList = ({ moviesList, mediaCount, handleChange, title, mediaType
           </Box>
       </Container>
     </Container>
-  ) : null;
+  ) : (
+    <Box>
+      <Typography textAlign={'center'} variant="h4">No Results Found</Typography>
+    </Box>
+  );
 };
 
 export default MoviesGridList;

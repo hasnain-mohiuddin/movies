@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import MoviesGridList from "./MoviesGridList";
 import { POPULAR_MOVIES_TITLE } from "../../constants/constants";
 import { fetchTrendingMovies } from "../../services/moviesService";
+import MoviesGridList from "./MoviesGridList";
 
 const PopularMovies = () => {
   const [popularMovies, setPopularMovies] = useState([]);

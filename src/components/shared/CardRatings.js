@@ -9,6 +9,8 @@ const CardRatings = ({
   readOnly = true,
   setRating = () => {},
   size = "small",
+  color,
+  starColor,
 }) => {
   return (
     <Container
@@ -21,16 +23,21 @@ const CardRatings = ({
     >
       <Rating
         name="text-feedback"
-        value={readOnly ? GET_RATING_SATRS(averageScore) : averageScore}
+        value={readOnly ? parseInt(GET_RATING_SATRS(averageScore)) : parseInt(averageScore)}
         readOnly={readOnly}
         precision={0.5}
         size={size}
         onChange={(event, newValue) => {
           setRating(newValue);
         }}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        emptyIcon={
+          <StarIcon
+            style={{ opacity: 0.55, outline: color, color: starColor }}
+            fontSize="inherit"
+          />
+        }
       />
-      <Typography variant="p" sx={{ fontWeight: "bold" }}>
+      <Typography variant="p" sx={{ fontWeight: "bold", color: color }}>
         {readOnly && GET_RATING_SCORE(averageScore)}
       </Typography>
     </Container>

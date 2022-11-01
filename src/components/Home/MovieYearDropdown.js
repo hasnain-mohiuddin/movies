@@ -4,7 +4,7 @@ import { TextField, FormControl } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import { ORANGE_HEXA, WIHITE_HEXA } from "../../constants/colors";
+import { ORANGE_HEXA, WHITE } from "../../constants/colors";
 
 const MovieYearDropdown = ({
   setSelectedYear,
@@ -17,22 +17,9 @@ const MovieYearDropdown = ({
         width: "25%",
         minWidth: "200px",
         m: 1,
-        // ".css-1sumxir-MuiFormLabel-root-MuiInputLabel-root": {
-        //   color: ORANGE_HEXA,
-        //   fontWeight: "700",
-        //   fontSize: "25px",
-        //   lineHeight: "1.8em",
-        // },
       }}
     >
-      <LocalizationProvider
-        dateAdapter={AdapterDayjs}
-        sx={{
-          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            border: "none",
-          },
-        }}
-      >
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           views={["year"]}
           label="Year"
@@ -46,7 +33,7 @@ const MovieYearDropdown = ({
               {...params}
               helperText={null}
               sx={{
-                backgroundColor: WIHITE_HEXA,
+                backgroundColor: WHITE,
                 borderRadius: 1,
                 color: ORANGE_HEXA,
               }}

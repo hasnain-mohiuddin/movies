@@ -5,11 +5,13 @@ import { Box, Container, Typography, CardMedia } from "@mui/material";
 import { fetchMovie, fetchTvShow } from "../../services/moviesService";
 import { GET_CARD_IMAGE_LINK } from "../../utils/helpers";
 import CardRatings from "../shared/CardRatings";
+import { NEVADA, WHITE } from "../../constants/colors";
+import RateMedia from "./RateMedia";
 
-const MovieDetails = () => {
+const MediaInfo = () => {
   const params = useParams();
   const location = useLocation();
-  const [movie, setMovie] = useState({});
+  const [media, setMedia] = useState({});
 
   useEffect(() => {
     if (location.pathname.includes("movie")) getMovieById();
@@ -19,7 +21,7 @@ const MovieDetails = () => {
   const getMovieById = async () => {
     try {
       const { data } = await fetchMovie(params.id);
-      setMovie(data);
+      setMedia(data);
     } catch (e) {
       console.log(e);
     }
@@ -27,39 +29,54 @@ const MovieDetails = () => {
 
   const getTVShowById = async () => {
     const { data } = await fetchTvShow(params.id);
-    setMovie(data);
+    setMedia(data);
   };
 
   return (
-    <Container sx={{ display: "flex", justifyContent: "flex-start", mx: 0 }}>
+    <Container>
       <Box sx={{ display: "flex", my: 10 }}>
         <Box
           sx={{
             minWidth: 350,
             objectFit: "contain",
-            mx: 10,
+            mr: 10,
+            border: `5px solid ${WHITE}`,
           }}
         >
           <CardMedia
-            sx={{ borderRadius: 4 }}
             component="img"
             alt="Movie Image"
-            image={GET_CARD_IMAGE_LINK(movie.backdrop_path)}
+            image={GET_CARD_IMAGE_LINK(media.backdrop_path)}
           />
         </Box>
-        <Box paddingY={10}>
-          <Typography marginBottom={3} variant="h4" sx={{ fontWeight: "bold" }}>
-            {movie.name || movie.title}
+        <Box>
+          <Typography
+            marginBottom={3}
+            variant="h4"
+            sx={{ fontWeight: "bold", color: WHITE }}
+          >
+            {media.name || media.title}
           </Typography>
-          <Typography variant="p" fontSize={18} color="text.secondary">
-            {movie.first_air_date || movie.release_date}
+          <Typography variant="p" fontSize={18} color={NEVADA}>
+            {media.first_air_date || media.release_date}
           </Typography>
           <Box marginY={3} sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography variant="p" fontSize={18} fontWeight={"bold"}>
+            <Typography
+              variant="p"
+              fontSize={18}
+              fontWeight={"bold"}
+              color={WHITE}
+              mb={2}
+            >
               Overview
             </Typography>
-            <Typography variant="p" fontSize={18}>
-              {movie.overview}
+            <Typography
+              variant="p"
+              fontSize={18}
+              color={NEVADA}
+              textAlign="justify"
+            >
+              {media.overview}
             </Typography>
           </Box>
           <Box
@@ -71,15 +88,22 @@ const MovieDetails = () => {
               variant="p"
               fontSize={18}
               fontWeight={"bold"}
+              color={WHITE}
             >
               Ratings
             </Typography>
-            <CardRatings averageScore={movie.vote_average} />
+            <CardRatings
+              size="larger"
+              averageScore={media.vote_average}
+              color={NEVADA}
+              starColor={WHITE}
+            />
           </Box>
+          <RateMedia />
         </Box>
       </Box>
     </Container>
   );
 };
 
-export default MovieDetails;
+export default MediaInfo;

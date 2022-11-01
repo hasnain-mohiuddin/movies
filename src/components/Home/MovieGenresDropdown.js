@@ -1,25 +1,18 @@
 import React from "react";
 import { MenuItem, Select } from "@mui/material";
 
-// import { WIHITE_HEXA } from "../constants/colors";
-
 const MovieGenresDropdown = ({ genresList, genresType, handleChange }) => {
   return (
     <Select
-      labelId="genres-select-dropdown"
-      id="genres-select-dropdown"
       value={genresType}
-      label="Select Genres"
       onChange={handleChange}
-      // sx={{
-      //   backgroundColor: WIHITE_HEXA,
-      //   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      //     border: "none",
-      //   },
-      // }}
+      label={'Select Genre'}
     >
       {genresList.map((item) => (
-        <MenuItem key={item.id} value={item.id}>
+        <MenuItem
+          key={item.id}
+          value={item.id}
+        >
           {item.name}
         </MenuItem>
       ))}

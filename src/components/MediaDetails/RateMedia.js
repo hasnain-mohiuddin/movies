@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
 import CardRatings from "../shared/CardRatings";
 import { rateMedia } from "../../services/moviesService";
+import { GRAY9, NEVADA, WHITE } from "../../constants/colors";
+import UserContext from "../../context/userContext";
+import urls from "../../constants/urls";
 
 const RateMedia = () => {
   const params = useParams();
+  const user = useContext(UserContext);
   const [rating, setRating] = useState(0);
   const [mediaType, setMediaType] = useState("");
 
@@ -27,21 +31,34 @@ const RateMedia = () => {
   return (
     <Box
       sx={{
-        mx: 15,
-        p: 4,
-        border: "1px solid black",
         my: 5,
         borderRadius: 4,
         display: "flex",
+        background: GRAY9,
+        p: 2,
       }}
     >
-      <Typography variant="h6">Submit your ratings</Typography>
-      <CardRatings
-        averageScore={rating}
-        readOnly={false}
-        setRating={handleChange}
-        size="large"
-      />
+      <Typography variant="h6" color={NEVADA} minWidth={200} flexGrow={1}>
+        Submit your ratings
+      </Typography>
+      {user && (
+        <CardRatings
+          averageScore={rating}
+          readOnly={false}
+          setRating={handleChange}
+          size="large"
+          color={WHITE}
+          starColor={WHITE}
+        />
+      )}
+      {!user && (
+        <Link
+          style={{ textTransform: "capitalize", fontSize: 18, color: WHITE, textDecoration: 'none' }}
+          to={urls.signin}
+        >
+          Sign in to give rating
+        </Link>
+      )}
     </Box>
   );
 };

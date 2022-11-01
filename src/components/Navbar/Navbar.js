@@ -10,22 +10,23 @@ import {
 
 import { auth } from "../../firebase";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { APP_TITLE } from "../../constants/constants";
 import DrawerComponent from "./DrawerComponent";
 import UserContext from "../../context/userContext";
-import {  GRAY9, WHITE } from "../../constants/colors";
+import { GRAY9, WHITE } from "../../constants/colors";
 import urls from "../../constants/urls";
+import { removeSessionId } from "../../services/sessionService";
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
     marginLeft: theme.spacing(5),
     display: "flex",
+    alignItems: "center",
   },
   logo: {
     flexGrow: "1",
     cursor: "pointer",
-    fontFamily: "Raleway, Arial",
     color: WHITE,
     textDecoration: "none",
     fontSize: "2.5rem",
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    marginLeft: theme.spacing(5),
     "&:hover": {
       color: WHITE,
     },
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles();
+  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const user = useContext(UserContext);
@@ -60,15 +62,41 @@ function Navbar() {
           {APP_TITLE}
         </Link>
         {isMobile ? (
-          user && <DrawerComponent user={user} />
+          <DrawerComponent user={user} />
         ) : (
           <div className={classes.navlinks}>
+            <Link className={classes.link} to={urls.dashboard}>
+              Home
+            </Link>
+            {!user &&
+              location.pathname !== urls.signin &&
+              location.pathname !== urls.signup && (
+                <>
+                  <Link className={classes.link} to={urls.signin}>
+                    Sign In
+                  </Link>
+                  <Link className={classes.link} to={urls.signin}>
+                    Sign Up
+                  </Link>
+                </>
+              )}
             {user && (
               <Button
                 className={classes.link}
-                sx={{ color: "white" }}
+                sx={{
+                  textTransform: "capitalize",
+                  color: "white",
+                  fontSize: "20px",
+                  marginLeft: 4,
+                  p: 0,
+                  textAlign: "top",
+                  "&:hover": {
+                    color: WHITE,
+                  },
+                }}
                 onClick={() => {
                   auth.signOut();
+                  removeSessionId();
                 }}
               >
                 Sign Out

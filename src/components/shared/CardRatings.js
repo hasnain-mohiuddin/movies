@@ -11,6 +11,7 @@ const CardRatings = ({
   size = "small",
   color,
   starColor,
+  isMobile
 }) => {
   return (
     <Container
@@ -18,6 +19,7 @@ const CardRatings = ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        flexDirection: `${isMobile ? 'column' : 'row'}`
       }}
       maxWidth={false}
     >
